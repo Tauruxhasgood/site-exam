@@ -1,0 +1,103 @@
+<!-- FORMULAIRE -->
+<div class="container sizeresponcive">
+  <div class="row pt-8 text-center">
+    <h1 class="pb-4">A propos de nous</h1>
+    <img class="col-md-4 rounded-circle sizeimg1 mb-5" src="assets/images/aproposdenous.jpg" alt="">
+    <p class="col-md-8 d-flex align-items-center">Lorem ipsum dolor sit amet, consectetuer adipiscing
+      elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+      penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
+      quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+      consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+      vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis
+      vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer
+      tincidunt. Cras dapibus. Vivamus elementum semper nisi. Lorem ipsum dolor sit amet, consectetuer adipiscing
+      elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+      penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
+      quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+      consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+      vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis
+      vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer
+      tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p>
+
+  </div>
+</div>
+
+<section class="bg-light pt-6 pb-5" id="contact">
+  <div class="col-md-12">
+    <h1 class="text-black text-center">Contactez-nous</h1>
+  </div>
+
+  <form>
+    <div class="container">
+
+      <!-- CHAMPS EMAIL NOM/PRENOM -->
+
+      <div class="row ps-3 pe-3 pt-5">
+
+        <div class="form-floating mb-3 col-md-6">
+          <input
+            required
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+          />
+          <label class="ms-4" for="floatingInput">Entrez votre Email</label>
+        </div>
+
+        <div class="form-floating mb-3 col-md-6 ms-0">
+
+          <input
+            required
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Nom et Prénom"
+          />
+          <label class="ms-4" for="floatingText">Votre Nom et Prénom</label>
+        </div>
+
+      </div>
+
+      <!-- COMMENTAIRE -->
+
+      <div class="form-floating ms-3 me-3 mb-3">
+        <textarea
+          required
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea"
+          style="height: 200px"
+        ></textarea>
+        <label for="floatingTextarea2">Commentaire</label>
+      </div>
+
+      <!-- MENU DE SELECTION -->
+
+      {{! <div class="form-floating ms-3 me-3">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option selected>Choisir le service</option>
+                        <option value="1">Service relation client</option>
+                        <option value="2">Service réservation</option>
+                        <option value="3">Service comptabilité</option>
+                    </select>
+                    <label for="floatingSelect">Menu</label>
+                </div> }}
+
+      <!-- CGU -->
+
+      <div class="mb-3 form-check ps-5 pt-3 pb-3 d-flex justify-content-center">
+        <input required type="checkbox" class="form-check-input" id="check" />
+        <label for="check" class="form-check-label ps-2">Accepter les CGU</label>
+      </div>
+
+      <div class="row">
+        <div class="d-grid gap-2 col-4 mx-auto">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+</section>
