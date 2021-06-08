@@ -12,3 +12,6 @@ sass --watch ./public/css/sass/index.sass:./public/css/style.css
         7: $spacer * 6,
         8: $spacer * 8,
         9: $spacer * 15,
+
+==> Mise en commentaire margin et opacity du <hr> dans _reboot.scss ligne 65
+==> changement couleur du <hr> dans _variables.scss ligne 508

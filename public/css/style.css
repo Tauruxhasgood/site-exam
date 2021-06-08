@@ -57,11 +57,9 @@ body {
 }
 
 hr {
-  margin: 1rem 0;
-  color: inherit;
+  color: black;
   background-color: currentColor;
   border: 0;
-  opacity: 0.25;
 }
 
 hr:not([size]) {
