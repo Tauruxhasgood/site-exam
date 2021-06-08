@@ -12543,22 +12543,6 @@ header {
 }
 
 @media screen and (max-width: 500px) {
-  .sizeresponcive .sizeimg1 {
-    height: 25vh;
-  }
-}
-@media screen and (min-width: 500px) and (max-width: 1024px) {
-  .sizeresponcive .sizeimg1 {
-    height: 45vh;
-  }
-}
-@media screen and (min-width: 1025px) and (max-width: 2800px) {
-  .sizeresponcive .sizeimg1 {
-    height: 45vh;
-  }
-}
-
-@media screen and (max-width: 500px) {
   .carouselresponcive .sizeimg {
     height: 30vh;
   }

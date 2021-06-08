@@ -1,43 +1,58 @@
-{{!--
+{{!
 Partial
 :navbar
---}}
+}}
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-            <img src="/assets/images/logo2.png" alt="" width="150" height="80">
-        </a>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src="/assets/images/logo2.png" alt="" width="150" height="80" />
+    </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#monMenu"
-            aria-controls="monMenu" aria-expanded="false" aria-label="menu for mobil"><span
-                class="navbar-toggler-icon"></span>
-        </button>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#monMenu"
+      aria-controls="monMenu"
+      aria-expanded="false"
+      aria-label="menu for mobil"
+    ><span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="monMenu">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/blog">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">A propos de nous</a>
-                </li>
-                
-                {{!-- <a class="nav-item nav-link" href="#exvoyage">Exemple de voyages</a>
-                <a class="nav-item nav-link" href="#galerie">Galerie</a> --}}
-                
-            </ul>
+    <div class="collapse navbar-collapse" id="monMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">A propos de nous</a>
+        </li>
+        {{!-- {{#if user}} --}}
+          {{!-- <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li> --}}
+        {{!-- {{/if}}
 
-            <form class="d-flex">
-                <a href="/connexion" class="btn btn-primary" role="button">Connexion</a>
-            </form>
-        </div>
+        <li class="nav-item">
+          <p>Welcome {{user.name}}</p>
+        </li> --}}
+
+        {{! <a class="nav-item nav-link" href="#exvoyage">Exemple de voyages</a>
+                <a class="nav-item nav-link" href="#galerie">Galerie</a> }}
+
+      </ul>
+
+      <form class="d-flex">
+        <a href="/connexion" class="btn btn-primary" role="button">Connexion</a>
+      </form>
     </div>
+  </div>
 </nav>

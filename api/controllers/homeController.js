@@ -1,9 +1,21 @@
 /*
+ * Module
+ * ****** */ 
+const simulate = require('../simulate.json').reverse().slice(0, 6)
+
+/*
  * Controller
  *************/ 
 module.exports = {
-    // Method Get
     get: (req, res) => {
-        res.render('home')
+        // console.log('Page Blog', simulate)
+        // const user = {
+        //     name: 'Bruno'
+        // }
+        
+        res.render('home', {
+            // user,
+            dbArticle: simulate
+        })
     }
 }

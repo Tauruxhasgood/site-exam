@@ -11,6 +11,26 @@
             <div class="row">
 
                 <!-- CARD 1 -->
+                {{#each dbArticle }}
+
+                <div class="col-md-4 pb-2">
+                    <div class="card" style="width: auto;">
+                        <img src="{{ img }}" style="height:250px;" class="card-img-top"
+                            alt="australie">
+                        <div class="card-body text-center">
+                            <h2 class="card-title text-center mb-4">{{ title }}</h2>
+                            <p class="card-text"> {{ description }} </p>
+                            <a href="https://www.routard.com/guide/code_dest/australie.htm" class="btn btn-danger"
+                                target="_blank"><i class="fas fa-globe-asia me-2"></i> Plus d'informations</a>
+                        </div>
+                    </div>
+                </div>
+
+                {{/each}}
+
+            {{!-- <div class="row">
+
+                <!-- CARD 1 -->
                 <div class="col-md-4 pb-2">
                     <div class="card" style="width: auto;">
                         <img src="assets/images/australie.jpg" style="height:250px;" class="card-img-top"
@@ -99,6 +119,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>

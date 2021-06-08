@@ -10,6 +10,7 @@ const express = require('express'),
  *************/ 
 const homeController = require('./controllers/homeController'),
     blogController = require('./controllers/blogController'),
+    // blogIdController = require('./controllers/blogIdController'),
     contactController = require('./controllers/contactController'),
     adminController = require('./controllers/adminController'),
     connexionController = require('./controllers/connexionController'),
@@ -28,6 +29,10 @@ router.route('/')
 // Blog
 router.route('/blog')
     .get(blogController.get)
+
+// BlogId
+router.route('/article/:id')
+    .get(blogController.getID)
 
 // Contact
 router.route('/contact')

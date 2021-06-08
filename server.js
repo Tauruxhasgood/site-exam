@@ -29,6 +29,13 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
  
+app.use('*', (req, res, next) => {
+    res.locals.user = {
+        name: 'Bruno'
+    }
+    next()
+})
+
 // Notre router permettra de diriger des chemins 'URL' sur les actions 'Controller' qui distriburont nos pages, ... 
 // CRUD = GET / POST / PUT / DELETE
 const ROUTER = require('./api/router')
