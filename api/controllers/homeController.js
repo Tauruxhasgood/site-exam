@@ -1,3 +1,5 @@
+const { json } = require('body-parser');
+
 /*
  * Module
  * ****** */ 
@@ -12,7 +14,7 @@ module.exports = {
         // const user = {
         //     name: 'Bruno'
         // }
-        
+
         res.render('home', {
             // user,
             dbArticle: simulate

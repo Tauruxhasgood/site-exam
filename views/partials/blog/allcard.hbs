@@ -1,4 +1,4 @@
- <!-- CARDS -->
+
 
 <section class="bg-light pb-5" id="exvoyage">
     <div class="container pt-8">
@@ -9,23 +9,16 @@
             </div>
         </div>
 
-        <div class="container-fluid pt-5 pb-5">
+        {{!-- BARRE DE RECHERCHE --}}
+        <div class="row justify-content-md-center pt-5 pb-5">
             <form class="d-flex col-md-6">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
-                
-        
-            
-        
 
-        
-
+        {{!-- ALL CARD --}}
         <div class="row">
-            
-
-            <!-- CARD 1 -->
             {{#each dbArticle }}
 
             <div class="col-md-4 pb-2">
@@ -37,7 +30,7 @@
                         <p class="card-text"> {{ description }} </p>
                         <p class="card-text"> {{ author }} </p>
                         <a href="/article/{{ id }}" class="btn btn-danger" onclick="checkId"
-                        ><i class="fas fa-globe-asia me-2"></i> Plus d'informations</a>
+                        >Plus d'informations</a>
                     </div>
                 </div>
             </div>
