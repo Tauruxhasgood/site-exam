@@ -2,103 +2,262 @@
   <div class="container-fluid pt-9">
     <div class="row">
       <div>
+
+        {{! MENU BOUTON S'ENREGISTRER/SE CONNECTER/MOT DE PASSE OUBLIÉ }}
         <ul
           class="nav nav-pills mb-3 col-md-12 d-flex justify-content-center"
-          id="pills-tab"
+          id="pills-tab-menuConnexion"
           role="tablist"
         >
           <li class="nav-item" role="presentation">
             <button
               class="nav-link"
-              id="pills-home-tab"
+              id="pills-senregistrer-tab"
               data-bs-toggle="pill"
-              data-bs-target="#pills-home"
+              data-bs-target="#pills-senregistrer"
               type="button"
               role="tab"
-              aria-controls="pills-home"
+              aria-controls="pills-senregistrer"
               aria-selected="true"
             >S'enregistrer</button>
           </li>
           <li class="nav-item" role="presentation">
             <button
               class="nav-link active"
-              id="pills-profile-tab"
+              id="pills-seConnecter-tab"
               data-bs-toggle="pill"
-              data-bs-target="#pills-profile"
+              data-bs-target="#pills-seConnecter"
               type="button"
               role="tab"
-              aria-controls="pills-profile"
+              aria-controls="pills-seConnecter"
               aria-selected="false"
             >Se connecter</button>
           </li>
           <li class="nav-item" role="presentation">
             <button
               class="nav-link"
-              id="pills-contact-tab"
+              id="pills-mdp-tab"
               data-bs-toggle="pill"
-              data-bs-target="#pills-contact"
+              data-bs-target="#pills-mdpoub"
               type="button"
               role="tab"
-              aria-controls="pills-contact"
+              aria-controls="pills-mdpoub"
               aria-selected="false"
             >Mot de passe oublié</button>
           </li>
         </ul>
 
+        {{! FORMULAIRE S'ENREGISTRER/SE CONNECTER/MOT DE PASSE OUBLIÉ }}
         <div
           class="tab-content col-md-12 d-flex justify-content-center"
           id="pills-tabContent"
         >
+
+          {{! FORMULAIRE S'ENREGISTRER }}
           <div
             class="tab-pane fade"
-            id="pills-home"
+            id="pills-senregistrer"
             role="tabpanel"
-            aria-labelledby="pills-home-tab"
+            aria-labelledby="pills-senregistrer-tab"
           >
-            <div class="row ps-3 pe-3 pt-5">
+            <form>
+              <div class="row pt-5">
 
-              <div class="form-floating mb-3 col-md-6">
-                <input
-                  required
-                  type="email"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="name@example.com"
-                />
-                <label class="ms-4" for="floatingInput">Entrez votre Email</label>
+                {{! INPUT S'ENREGISTRER EMAIL }}
+                <div class="form-floating mb-3 col-md-6">
+                  <input
+                    required
+                    type="email"
+                    class="form-control"
+                    id="inputSenregistrerEmail1"
+                    placeholder="name@example.com"
+                  />
+                  <label class="ps-4" for="floatingInput">Entrez votre Email</label>
+                </div>
+
+                {{! INPUT S'ENREGISTRER NAME }}
+                <div class="form-floating mb-3 col-md-6 ms-0">
+
+                  <input
+                    required
+                    type="text"
+                    class="form-control"
+                    id="inputSenregistrerName1"
+                    placeholder="Nom et Prénom"
+                  />
+                  <label class="ps-4" for="floatingText">Votre Nom et Prénom</label>
+                </div>
+
+                {{! INPUT S'ENREGISTRER PASSWORD }}
+                <div class="form-floating mb-3 col-md-6">
+                  <input
+                    required
+                    type="password"
+                    class="form-control"
+                    id="inputSenregistrerPassword1"
+                    placeholder="name@example.com"
+                  />
+                  <label class="form-label ps-4" for="floatingInput">Votre
+                    password</label>
+                </div>
+
+                {{! REPEAT S'ENREGISTRER PASSWORD }}
+                <div class="form-floating mb-3 col-md-6">
+                  <input
+                    required
+                    type="password"
+                    class="form-control"
+                    id="inputSenregistrerPassword2"
+                    placeholder="name@example.com"
+                  />
+                  <label class="form-label ps-4" for="floatingInput">Votre
+                    password</label>
+                </div>
+
+                {{! CGU }}
+                <div
+                  class="mb-3 form-check ps-5 pt-3 pb-3 d-flex justify-content-center"
+                >
+                  <input
+                    required
+                    type="checkbox"
+                    class="form-check-input"
+                    id="checkFormSenregistrer"
+                  />
+                  <label for="check" class="form-check-label ps-2">Accepter les
+                    CGU</label>
+                </div>
+
+                {{! BOUTON SUBMIT S'ENREGISTRER }}
+                <div class="row">
+                  <div class="d-grid gap-2 col-4 mx-auto">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                    >Submit</button>
+                  </div>
+                </div>
+
               </div>
-
-              <div class="form-floating mb-3 col-md-6 ms-0">
-
-                <input
-                  required
-                  type="text"
-                  class="form-control"
-                  id="floatingInput"
-                  placeholder="Nom et Prénom"
-                />
-                <label class="ms-4" for="floatingText">Votre Nom et Prénom</label>
-              </div>
-
-            </div>
+            </form>
 
           </div>
+
+          {{! FORMULAIRE SE CONNECTER }}
           <div
             class="tab-pane fade show active"
-            id="pills-profile"
+            id="pills-seConnecter"
             role="tabpanel"
-            aria-labelledby="pills-profile-tab"
-          >coucou 2</div>
+            aria-labelledby="pills-seConnecter-tab"
+          >
+            <form>
+              <div class="row pt-5">
+                {{! INPUT SE CONNECTER EMAIL }}
+                <div class="form-floating mb-3 col-md-6">
+                  <input
+                    required
+                    type="email"
+                    class="form-control"
+                    id="inputSeconnecterEmail1"
+                    placeholder="name@example.com"
+                  />
+                  <label class="ps-4" for="floatingInput">Entrez votre Email</label>
+                </div>
+
+                {{! INPUT SE CONNECTER PASSWORD }}
+                <div class="form-floating mb-3 col-md-6">
+                  <input
+                    required
+                    type="password"
+                    class="form-control"
+                    id="inputSeconnecterPassword1"
+                    placeholder="name@example.com"
+                  />
+                  <label class="form-label ps-4" for="floatingInput">Votre
+                    password</label>
+                </div>
+
+                {{! CGU }}
+                <div
+                  class="mb-3 form-check ps-5 pt-3 pb-3 d-flex justify-content-center"
+                >
+                  <input
+                    required
+                    type="checkbox"
+                    class="form-check-input"
+                    id="checkFormSeconnecter"
+                  />
+                  <label for="check" class="form-check-label ps-2">Accepter les
+                    CGU</label>
+                </div>
+
+                {{! BOUTON SUBMIT S'ENREGISTRER }}
+                <div class="row">
+                  <div class="d-grid gap-2 col-4 mx-auto">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                    >Submit</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          {{! FORMULAIRE MOT DE PASSE OUBLIÉ }}
           <div
             class="tab-pane fade"
-            id="pills-contact"
+            id="pills-mdpoub"
             role="tabpanel"
-            aria-labelledby="pills-contact-tab"
-          >Coucou 3</div>
+            aria-labelledby="pills-mdpoub-tab"
+          >
+            
+            <form>
+              <h4 class="fs-6 light pt-5 pb-5">Saisissez l'adresse e-mail ou le numéro de téléphone portable
+                  associé à votre compte "Embarquement immédiat"</h4>
+              <div class="row">
+                {{!-- INPUT EMAIL MDP OUBLIÉ --}}
+                <div class="form-floating mb-3 col-md-12">
+                  <input
+                    required
+                    type="email"
+                    class="form-control"
+                    id="inputMdpOubEmail1"
+                    placeholder="name@example.com"
+                  />
+                  <label class="ps-4" for="floatingInput">Entrez votre Email</label>
+                </div>
+
+                {{! CGU }}
+                <div
+                  class="mb-3 form-check ps-5 pt-3 pb-3 d-flex justify-content-center"
+                >
+                  <input
+                    required
+                    type="checkbox"
+                    class="form-check-input"
+                    id="checkFormMdpoub"
+                  />
+                  <label for="check" class="form-check-label ps-2">Accepter les
+                    CGU</label>
+                </div>
+
+                {{! BOUTON SUBMIT S'ENREGISTRER }}
+                <div class="row">
+                  <div class="d-grid gap-2 col-4 mx-auto">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                    >Submit</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
         </div>
+
       </div>
-
     </div>
-
   </div>
 </section>
