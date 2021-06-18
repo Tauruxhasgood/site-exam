@@ -7,6 +7,7 @@
 const
     express = require('express'),
     app = express(),
+    mysql = require('mysql'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     port = process.env.PORT || 3000;
@@ -18,6 +19,19 @@ app.engine('hbs', hbs({
     defaultLayout: 'main',
     adminLayout : 'adminLayout'
 }));
+
+//mySQL
+
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "tuto",
+    password: "Tuto!123456"
+});
+
+db.connect((err) => {
+    if (err) console.log('error connecting: ' + err.stack);
+    console.log('connected as id ' + db.threadId);
+});
 
 // Express static permet de diriger un chemin sur un dossier en particulier
 app.use('/assets', express.static('public'));
