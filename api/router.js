@@ -1,13 +1,13 @@
 /*
  * Import Module
- ****************/ 
+ ****************/
 const express = require('express'),
     router = express.Router(),
     path = require('path')
 
 /*
  * Controller
- *************/ 
+ *************/
 const homeController = require('./controllers/homeController'),
     blogController = require('./controllers/blogController'),
     // blogIdController = require('./controllers/blogIdController'),
@@ -19,20 +19,23 @@ const homeController = require('./controllers/homeController'),
 /*
  * Router
  ***********/
-
-
-
+    
 // Home
 router.route('/')
     .get(homeController.get)
 
 // Blog
 router.route('/blog')
-    .get(blogController.get)
+    .get(blogController.pageBlog)
+
+// Blog
+router.route('/article')
+    // .post(blogController.create)
+    .put(blogController.edit)
 
 // BlogId
 router.route('/article/:id')
-    .get(blogController.getID)
+    .get(blogController.pageBlogID)
 
 // Contact
 router.route('/contact')
@@ -44,6 +47,7 @@ router.route('/admin')
 
 // Connexion
 router.route('/connexion')
+    .post(connexionController.create)
     .get(connexionController.get)
 
 // Feed
@@ -53,6 +57,6 @@ router.route('/feed')
  * / Router
  */
 
- 
+
 // on export router pour le récupérer dans ../server.js
 module.exports = router;

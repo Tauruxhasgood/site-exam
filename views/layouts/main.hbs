@@ -7,6 +7,22 @@
 
 {{> navbar }}
 
+{{#if error }}
+<div class="mt-8 container">
+    <div class="alert alert-warning" role="alert">
+        {{ error }}
+    </div>
+</div>
+{{/if }}
+
+{{#if success }}
+<div class="mt-8 container">
+    <div class="alert alert-success" role="alert">
+        {{ success }}
+    </div>
+</div>
+{{/if }}
+
 {{{ body }}}
 
 {{> end }}

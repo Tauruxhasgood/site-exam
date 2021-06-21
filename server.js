@@ -10,22 +10,26 @@ const
     mysql = require('mysql'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
     port = process.env.PORT || 3000;
+
+app.use(methodOverride('_method'))
 
 // Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
     extname: 'hbs',
     defaultLayout: 'main',
-    adminLayout : 'adminLayout'
+    adminLayout: 'adminLayout'
 }));
 
 //mySQL
 
 const db = mysql.createConnection({
     host: "localhost",
-    user: "tuto",
-    password: "Tuto!123456"
+    user: "cedric",
+    password: "Cedric310785/*-!",
+    database: 'Embarquement'
 });
 
 db.connect((err) => {
@@ -42,7 +46,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
- 
+
 app.use('*', (req, res, next) => {
     res.locals.user = {
         name: 'Bruno'

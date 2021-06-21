@@ -60,7 +60,7 @@
             role="tabpanel"
             aria-labelledby="pills-senregistrer-tab"
           >
-            <form>
+            <form action="/connexion" method="post">
               <div class="row pt-5">
 
                 {{! INPUT S'ENREGISTRER EMAIL }}
@@ -68,6 +68,7 @@
                   <input
                     required
                     type="email"
+                    name="email"
                     class="form-control"
                     id="inputSenregistrerEmail1"
                     placeholder="name@example.com"
@@ -81,6 +82,7 @@
                   <input
                     required
                     type="text"
+                    name="name"
                     class="form-control"
                     id="inputSenregistrerName1"
                     placeholder="Nom et Prénom"
@@ -93,6 +95,7 @@
                   <input
                     required
                     type="password"
+                    name="password"
                     class="form-control"
                     id="inputSenregistrerPassword1"
                     placeholder="name@example.com"
@@ -106,6 +109,7 @@
                   <input
                     required
                     type="password"
+                    name="passwordConfirm"
                     class="form-control"
                     id="inputSenregistrerPassword2"
                     placeholder="name@example.com"
@@ -121,6 +125,7 @@
                   <input
                     required
                     type="checkbox"
+                    name="accept"
                     class="form-check-input"
                     id="checkFormSenregistrer"
                   />
