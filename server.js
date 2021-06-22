@@ -25,7 +25,7 @@ app.engine('hbs', hbs({
 
 //mySQL
 
-const db = mysql.createConnection({
+db = mysql.createConnection({
     host: "localhost",
     user: "cedric",
     password: "Cedric310785/*-!",

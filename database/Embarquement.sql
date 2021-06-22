@@ -23,11 +23,11 @@ USE `Embarquement` ;
 CREATE TABLE IF NOT EXISTS `Embarquement`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
-  `isAdmin` TINYINT NOT NULL,
-  `email` DATE NOT NULL,
+  `isAdmin` TINYINT NOT NULL DEFAULT 0,
+  `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `isVerified` TINYINT NOT NULL,
-  `avatar` VARCHAR(255) NOT NULL,
+  `isVerified` TINYINT NOT NULL DEFAULT 0,
+  `avatar` VARCHAR(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)

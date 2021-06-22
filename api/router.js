@@ -45,10 +45,18 @@ router.route('/contact')
 router.route('/admin')
     .get(adminController.get)
 
-// Connexion
+// S'enregistrer
 router.route('/connexion')
     .post(connexionController.create)
     .get(connexionController.get)
+
+// Connexion
+router.route('/connexion')
+    .post(connexionController.login)
+
+// MDP lost
+// router.route('/connexion')
+//     .post(connexionController.lost)
 
 // Feed
 router.route('/feed')
