@@ -1,0 +1,123 @@
+{{!--
+Partial: management
+
+--}}
+
+
+<section class="pt-8 container-fluid bg-light">
+    {{! TABS ADMIN BOUTONS }}
+    <ul class="nav nav-tabs container pb-3 ps-3 pt-5" id="myTab" role="tablist">
+        {{!-- GESTION UTILISATEURS --}}
+        <li class="nav-item ps-2 pe-2" role="presentation">
+            <button class="nav-link border border-primary active text-white bg-dark" id="users-tab" data-bs-toggle="tab"
+                data-bs-target="#users" type="button" role="tab" aria-controls="users"
+                aria-selected="true">Utilisateurs</button>
+        </li>
+        {{!-- GESTION MESSAGES --}}
+        <li class="nav-item pe-2" role="presentation">
+            <button class="nav-link bg-dark border border-primary text-white" id="messages-tab" data-bs-toggle="tab"
+                data-bs-target="#messages" type="button" role="tab" aria-controls="messages"
+                aria-selected="false">Messages</button>
+        </li>
+        {{!-- GESTION DES COMMENTAIRES ET AVIS --}}
+        <li class="nav-item pe-2" role="presentation">
+            <button class="nav-link bg-dark border border-primary text-white" id="comments-tab" data-bs-toggle="tab"
+                data-bs-target="#comments" type="button" role="tab" aria-controls="comments"
+                aria-selected="false">Commentaires & Avis</button>
+        </li>
+        {{!-- GESTION DES ARTICLES --}}
+        <li class="nav-item pe-2" role="presentation">
+            <button class="nav-link bg-dark border border-primary text-white" id="articles-tab" data-bs-toggle="tab"
+                data-bs-target="#articles" type="button" role="tab" aria-controls="articles"
+                aria-selected="false">Articles</button>
+        </li>
+    </ul>
+    {{! CONTENU DES TABS ADMIN }}
+    <div class="tab-content container">
+
+
+        {{!-- GESTION DES UTILISATEURS --}}
+        <div class="tab-pane active" id="users" role="tabpanel" aria-labelledby="users-tab">
+            {{> admin/tableUsers }}
+        </div>
+
+
+        {{! GESTION DES MESSAGES }}
+        <div class="tab-pane container" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+            {{> admin/tableMessages }}
+        </div>
+
+
+        {{! GESTION DES AVIS ET COMMENTAIRES }}
+        <div class=" tab-pane container" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+            {{> admin/tableAvis-Commentaires }}
+        </div>
+
+
+        {{!-- GESTION DES ARTICLES --}}
+        <div class=" tab-pane container" id="articles" role="tabpanel" aria-labelledby="articles-tab">
+            {{> admin/tableArticles }}
+        </div>
+    </div>
+
+</section>
+
+
+
+<script>
+    var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
+        = new bootstrap.Tab(firstTabEl) firstTab.show()
+</script>
+
+
+<style>
+    @media only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px) {
+
+        /* Force table to not be like tables anymore */
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+            display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        tr {
+            border: 1px solid #ccc;
+        }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+
+        /*
+Label the data
+*/
+
+
+    }
+</style>
