@@ -28,9 +28,9 @@ CREATE TABLE IF NOT EXISTS `Embarquement`.`user` (
   `password` VARCHAR(255) NOT NULL,
   `isVerified` TINYINT NOT NULL DEFAULT 0,
   `avatar` VARCHAR(255) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+  PRIMARY KEY (`id`)
+  -- UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
+  -- UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -64,13 +64,13 @@ CREATE TABLE IF NOT EXISTS `Embarquement`.`comments` (
   `creation_date` DATE NOT NULL,
   `author_id` INT NOT NULL,
   `ref_id` INT NOT NULL,
-  INDEX `fk_comments_articles1_idx` (`ref_id` ASC) VISIBLE,
+  -- INDEX `fk_comments_articles1_idx` (`ref_id` ASC) VISIBLE,
   INDEX `fk_comments_user1_idx` (`author_id` ASC) VISIBLE,
-  CONSTRAINT `fk_comments_articles1`
-    FOREIGN KEY (`ref_id`)
-    REFERENCES `Embarquement`.`articles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  -- CONSTRAINT `fk_comments_articles1`
+  --   FOREIGN KEY (`ref_id`)
+  --   REFERENCES `Embarquement`.`articles` (`id`)
+  --   ON DELETE NO ACTION
+  --   ON UPDATE NO ACTION,
   CONSTRAINT `fk_comments_user1`
     FOREIGN KEY (`author_id`)
     REFERENCES `Embarquement`.`user` (`id`)
