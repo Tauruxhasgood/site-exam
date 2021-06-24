@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
     let sql = `SELECT * FROM user WHERE email = ?`;
     let email = [req.body.email];
 
-    console.log('body login: ', req.body.email)
+    console.log('body login :', req.body.email)
 
     await db.query(sql, [email], (error, results, fields) => {
         if (error) throw error;

@@ -45,6 +45,9 @@ router.route('/contact')
 router.route('/admin')
     .get(adminController.get)
 
+router.route('/deleteOne/:id')
+    .delete(adminController.deleteOne)
+
 //Connexion
 router.route('/connexion')
     .get(connexionController.get)

@@ -22,7 +22,7 @@
       <tr>
         <th scope="row">1</th>
         <td>{{ this.name }}</td>
-        <td>michel@michou.fr</td>
+        <td>{{ this.email }}</td>
         <td>
           <select class="form-select" aria-label="Default select example">
             <option selected>Verified</option>
@@ -33,12 +33,11 @@
         <td>
           <button
             type="button"
+            name="id"
             class="btn btn-danger"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-          >
-            X
-          </button>
+          >X</button>
         </td>
 
         <!-- Modal -->
@@ -55,22 +54,31 @@
                 <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de
                   vouloir supprimer cet utilisateur ?</h5>
                 <button
-                  type="button"
+                  type="submit"
                   class="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
               </div>
               <div class="modal-body text-dark">
-                -Suppression de : *username*
+                -Suppression de :
+                {{this.name}}
               </div>
               <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  data-bs-dismiss="modal"
-                >Annuler</button>
-                <button type="button" class="btn btn-success">Appliquer</button>
+                <form
+                  action="/deleteOne/{{ this.id }}?_method=DELETE"
+                  method="post"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-dismiss="modal"
+                  >Annuler</button>
+                  <button
+                    type="submit"
+                    class="btn btn-success"
+                  >Appliquer</button>
+                </form>
               </div>
             </div>
           </div>
@@ -78,137 +86,22 @@
 
       </tr>
     {{/each}}
-
-    <tr>
-      <th scope="row">2</th>
-      <td>thorn</td>
-      <td>thorn.lol@lol.fr</td>
-      <td>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Banned</option>
-          <option value="1">Verified</option>
-
-          <option value="3">User</option>
-        </select>
-
-      </td>
-      <td>
-        <button
-          type="button"
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          X
-        </button>
-
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de
-                  vouloir supprimer cet utilisateur ?</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body text-dark">
-                -Suppression de : *username*
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  data-bs-dismiss="modal"
-                >Annuler</button>
-                <button type="button" class="btn btn-success">Appliquer</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry the Bird</td>
-      <td>thorn.lol@lol.fr</td>
-      <td>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>User</option>
-          <option value="1">Verified</option>
-          <option value="2">Banned</option>
-
-        </select>
-      </td>
-      <td><button
-          type="button"
-          class="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          X
-        </button>
-
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de
-                  vouloir supprimer cet utilisateur ?</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body text-dark">
-                -Suppression de : *username*
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  data-bs-dismiss="modal"
-                >Annuler</button>
-                <button type="button" class="btn btn-success">Appliquer</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </td>
-    </tr>
   </tbody>
 </table>
 
 {{! BOUTON APPLIQUER LES MODIFS }}
 <div class="d-flex justify-content-end pb-5">
   <!-- Button trigger modal -->
-  <button
-    type="button"
-    class="btn btn-success"
-    data-bs-toggle="modal"
-    data-bs-target="#exampleModal2"
-  >
-    Appliquer les modifications
-  </button>
+  <form action="" method="">
+    <button
+      type="button"
+      class="btn btn-success"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal2"
+    >
+      Appliquer les modifications
+    </button>
+  </form>
 
   <!-- MODAL APPLIQUER LES MODIFS -->
   <div
