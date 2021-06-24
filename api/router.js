@@ -19,7 +19,7 @@ const homeController = require('./controllers/homeController'),
 /*
  * Router
  ***********/
-    
+
 // Home
 router.route('/')
     .get(homeController.get)
@@ -45,18 +45,21 @@ router.route('/contact')
 router.route('/admin')
     .get(adminController.get)
 
-// S'enregistrer
+//Connexion
 router.route('/connexion')
-    .post(connexionController.create)
     .get(connexionController.get)
 
+// S'enregistrer
+router.route('/register')
+    .post(connexionController.create)
+
 // Connexion
-router.route('/connexion')
+router.route('/login')
     .post(connexionController.login)
 
 // MDP lost
-// router.route('/connexion')
-//     .post(connexionController.lost)
+router.route('/lostPassword')
+    .post(connexionController.lostPassword)
 
 // Feed
 router.route('/feed')

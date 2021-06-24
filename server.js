@@ -11,6 +11,7 @@ const
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
+    util = require('util'),
     port = process.env.PORT || 3000;
 
 app.use(methodOverride('_method'))
@@ -36,6 +37,9 @@ db.connect((err) => {
     if (err) console.log('error connecting: ' + err.stack);
     console.log('connected as id ' + db.threadId);
 });
+
+const query = util.promisify(db.query).bind(db);
+global.query = query;
 
 // Express static permet de diriger un chemin sur un dossier en particulier
 app.use('/assets', express.static('public'));
