@@ -48,6 +48,9 @@ router.route('/admin')
 router.route('/deleteOne/:id')
     .delete(adminController.deleteOne)
 
+router.route('/editOne/:id')
+    .put(adminController.editOne)
+
 //Connexion
 router.route('/connexion')
     .get(connexionController.get)

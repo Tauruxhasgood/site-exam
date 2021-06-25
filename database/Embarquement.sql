@@ -11,6 +11,10 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema Embarquement
 -- -----------------------------------------------------
 
+DROP TABLE user;
+DROP TABLE articles;
+DROP TABLE comments;
+DROP TABLE message;
 -- -----------------------------------------------------
 -- Schema Embarquement
 -- -----------------------------------------------------
@@ -22,13 +26,14 @@ USE `Embarquement` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Embarquement`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL UNIQUE,
+  `password` VARCHAR(100) NOT NULL,
   `isAdmin` TINYINT NOT NULL DEFAULT 0,
-  `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
   `isVerified` TINYINT NOT NULL DEFAULT 0,
-  `avatar` VARCHAR(255) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
+  `isBann` TINYINT NOT NULL DEFAULT 0,
+  `avatar` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`))
   -- UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
   -- UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB;

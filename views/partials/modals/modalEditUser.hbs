@@ -1,0 +1,82 @@
+<div
+  class="modal fade"
+  id="editUser{{ user.id }}"
+  tabindex="-1"
+  aria-labelledby="editUserLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editUserLabel">Modification de l'utilisateur</h5>
+        <button
+          type="submit"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body text-dark">
+        <form action="/editOne/{{ user.id }}?_method=PUT" method="post">
+
+          <label for="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control mb-3"
+            id="name"
+            value="{{ user.name }}"
+          />
+          <label for="name">Email</label>
+          <input
+            type="text"
+            name="email"
+            class="form-control mb-5"
+            id="email"
+            value="{{ user.email }}"
+          />
+
+          <label for="">Admin</label>
+          <input type="checkbox" id="isAdmin{{ user.id }}" name="isAdmin" />
+          <label for="">Verified</label>
+          <input type="checkbox" id="isVerified{{ user.id }}" name="isVerified" />
+          <label for="">Bann</label>
+          <input type="checkbox" id="isBann{{ user.id }}" name="isBann" />
+          <button type="submit">Editer {{ user.name }} </button>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >Annuler</button>
+            <button type="submit" class="btn btn-success">Appliquer</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // isAdmin
+  const isAdmin{{ user.id }} = document.getElementById('isAdmin{{ user.id }}')
+  const adm{{ user.id }} = {{ isAdmin }}
+  if ( adm{{ user.id }} === 1 ) isAdmin{{ user.id }}.checked = true
+
+  // isVerified 
+  const isVerified{{ user.id }} = document.getElementById('isVerified{{ user.id }}')
+  const vrf{{ user.id }} = {{ isVerified }} 
+  if ( vrf{{ user.id }} === 1 ) isVerified{{ user.id }}.checked = true
+
+  // isBann
+  {{!-- const isBann = document.getElementById('isBann')
+  const bann = 0 
+  if ( bann === 1 ) isBann.checked = true --}}
+  
+  
+  console.log('ma variable modal: ', typeof adm{{ user.id }}, adm{{ user.id }})
+
+</script>

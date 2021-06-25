@@ -2,7 +2,10 @@
  * Controller
  *************/
 
+// const { query } = require("express");
+
 exports.get = async (req, res) => {
+    console.log('Page admin: ')
     res.render('admin', {
         // Quand nous utilisons un layout qui n'est pas celui par default nous devons le spécifié
         layout: 'adminLayout',
@@ -21,8 +24,31 @@ exports.deleteOne = async (req, res) => {
 
     await query(sql, [id])
 
-    res.render('admin', {
-        success: "L'utilisateur a bien été supprimé !",
-        listUser: await query('SELECT * FROM user')
-    });
+    res.redirect('/admin')
+
+    // res.render('admin', {
+    //     success: "L'utilisateur a bien été supprimé !",
+    //     listUser: await query('SELECT * FROM user')
+    // });
+}
+
+exports.editOne = async (req, res) => {
+    console.log('Controller Edit User :', req.body)
+    // let isAdmin = '0', isVerified = '0', isBan = '0'
+
+    // if (req.body.isAdmin === 'on') isAdmin = '1'
+    // if (req.body.isVerified === 'on') isVerified = '1'
+    // if (req.body.isBan === 'on') isBan = '1'
+
+    let sql = `UPDATE user
+               SET name = '${req.body.name}',
+                   email = '${req.body.email}',
+                   isAdmin = '${(req.body.isAdmin === 'on' ? '1' : '0')}',
+                   isVerified = '${(req.body.isVerified === 'on' ? '1' : '0')}',
+                   isBann = '${(req.body.isBan === 'on' ? '1' : '0')}'
+               WHERE id = '${req.params.id}';`
+
+    await query(sql)
+
+    res.redirect('/admin')
 }

@@ -16,16 +16,7 @@ const
 
 app.use(methodOverride('_method'))
 
-// Handlebars
-app.set('view engine', 'hbs');
-app.engine('hbs', hbs({
-    extname: 'hbs',
-    defaultLayout: 'main',
-    adminLayout: 'adminLayout'
-}));
-
 //mySQL
-
 db = mysql.createConnection({
     host: "localhost",
     user: "cedric",
@@ -40,6 +31,19 @@ db.connect((err) => {
 
 const query = util.promisify(db.query).bind(db);
 global.query = query;
+
+const { inc } = require('./api/helpers')
+
+// Handlebars
+app.set('view engine', 'hbs');
+app.engine('hbs', hbs({
+    helpers: {
+        inc
+    },
+    extname: 'hbs',
+    defaultLayout: 'main',
+    adminLayout: 'adminLayout'
+}));
 
 // Express static permet de diriger un chemin sur un dossier en particulier
 app.use('/assets', express.static('public'));

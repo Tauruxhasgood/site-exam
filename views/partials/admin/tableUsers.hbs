@@ -8,7 +8,7 @@
   <thead>
     {{! TITRES ELEMENTS TABLEAU }}
     <tr>
-      <th scope="col">#id</th>
+      <th scope="col">id</th>
       <th scope="col">Nom</th>
       <th scope="col">Email</th>
       <th scope="col">Status</th>
@@ -20,69 +20,41 @@
     {{#each listUser}}
 
       <tr>
-        <th scope="row">1</th>
+        {{! inc permet d'incrémenter l'id, si l'on supprime un utilisateurs,
+         les id vont automatiquement se réattribuer dans l'ordre. Ne touche pas au ID de la db }}
+        <th scope="row"> {{inc @index}} : {{ this.id }} </th>
         <td>{{ this.name }}</td>
         <td>{{ this.email }}</td>
         <td>
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Verified</option>
+          {{!-- <select class="form-select" aria-label="Default select example">
+            <option value="1">Verified</option>
             <option value="2">Banned</option>
             <option value="3">User</option>
-          </select>
+          </select> --}}
         </td>
         <td>
           <button
             type="button"
             name="id"
-            class="btn btn-danger"
+            class="btn btn-danger px-3"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >X</button>
+            {{! permet de donner l'id de l'utilisateur }}
+            data-bs-target="#modalDelete{{ this.id }}"
+          ><i class="far fa-trash-alt"></i></button>
+          <button
+            type="button"
+            name="id"
+            class="btn btn-success ms-2 ps-3"
+            data-bs-toggle="modal"
+            data-bs-target="#editUser{{ this.id }}"
+          ><i class="far fa-edit"></i></button>
         </td>
 
         <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de
-                  vouloir supprimer cet utilisateur ?</h5>
-                <button
-                  type="submit"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body text-dark">
-                -Suppression de :
-                {{this.name}}
-              </div>
-              <div class="modal-footer">
-                <form
-                  action="/deleteOne/{{ this.id }}?_method=DELETE"
-                  method="post"
-                >
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    data-bs-dismiss="modal"
-                  >Annuler</button>
-                  <button
-                    type="submit"
-                    class="btn btn-success"
-                  >Appliquer</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+
+        {{> modals/modalDeleteUser user=this }}
+
+        {{> modals/modalEditUser user=this }}
 
       </tr>
     {{/each}}
@@ -97,25 +69,25 @@
       type="button"
       class="btn btn-success"
       data-bs-toggle="modal"
-      data-bs-target="#exampleModal2"
+      data-bs-target="#changeStatus"
     >
       Appliquer les modifications
     </button>
   </form>
 
   <!-- MODAL APPLIQUER LES MODIFS -->
-  <div
+  {{!-- <div
     class="modal fade"
-    id="exampleModal2"
+    id="changeStatus{{this.name}}"
     tabindex="-1"
-    aria-labelledby="exampleModalLabel"
+    aria-labelledby="changeStatusLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de
-            vouloir appliquer les modifications</h5>
+          <h5 class="modal-title" id="changeStatusLabel">Êtes vous sûr de
+            vouloir supprimer cet utilisateur ?</h5>
           <button
             type="button"
             class="btn-close"
@@ -124,7 +96,7 @@
           ></button>
         </div>
         <div class="modal-body text-dark">
-          -User : Mark status changed from 'user' => 'banned'
+          : Changer le statut de ?? vers ??
         </div>
         <div class="modal-footer">
           <button
@@ -136,6 +108,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
 </div>
