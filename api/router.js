@@ -13,6 +13,7 @@ const homeController = require('./controllers/homeController'),
     // blogIdController = require('./controllers/blogIdController'),
     contactController = require('./controllers/contactController'),
     adminController = require('./controllers/adminController'),
+    userController = require('./controllers/userController'),
     connexionController = require('./controllers/connexionController'),
     feedController = require('./controllers/rssController')
 
@@ -20,28 +21,30 @@ const homeController = require('./controllers/homeController'),
  * Router
  ***********/
 
-// Home
+// HOME
 router.route('/')
     .get(homeController.get)
 
-// Blog
+// BLOG
+
+// - Blog
 router.route('/blog')
     .get(blogController.pageBlog)
 
-// Blog
+// - Blog
 router.route('/article')
     // .post(blogController.create)
     .put(blogController.edit)
 
-// BlogId
+// - BlogId
 router.route('/article/:id')
     .get(blogController.pageBlogID)
 
-// Contact
+// CONTACT
 router.route('/contact')
     .get(contactController.get)
 
-// Admin
+// ADMIN
 router.route('/admin')
     .get(adminController.get)
 
@@ -51,23 +54,30 @@ router.route('/deleteOne/:id')
 router.route('/editOne/:id')
     .put(adminController.editOne)
 
-//Connexion
+// USER
+router.route('/user')
+    .get(userController.get)
+
+//CONNEXION
 router.route('/connexion')
     .get(connexionController.get)
 
-// S'enregistrer
+router.route('/logout')
+    .get(connexionController.logout)
+
+// - S'enregistrer
 router.route('/register')
     .post(connexionController.create)
 
-// Connexion
+// - Se connecter
 router.route('/login')
     .post(connexionController.login)
 
-// MDP lost
+// - MDP lost
 router.route('/lostPassword')
     .post(connexionController.lostPassword)
 
-// Feed
+// FEED
 router.route('/feed')
     .get(feedController.get)
 /***********

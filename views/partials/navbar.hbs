@@ -35,10 +35,25 @@ Partial
         <li class="nav-item">
           <a class="nav-link" href="/contact">A propos de nous</a>
         </li>
-        {{!-- {{#if user}} --}}
-          {{!-- <li class="nav-item">
+        {{#if admin}}
+          <li class="nav-item">
             <a class="nav-link" href="/admin">Admin</a>
-          </li> --}}
+          </li>
+          {{else if user}}
+          <li class="nav-item">
+            <a class="nav-link" href="/user">Mon compte</a>
+          </li>
+        {{/if}}
+        
+
+        {{!-- {{#ifCond user.isAdmin '=' '1' }}
+
+        {{/ifCond }} --}}
+
+        {{!-- {{#if user}} --}}
+        {{! <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li> }}
         {{!-- {{/if}}
 
         <li class="nav-item">
@@ -47,12 +62,26 @@ Partial
 
         {{! <a class="nav-item nav-link" href="#exvoyage">Exemple de voyages</a>
                 <a class="nav-item nav-link" href="#galerie">Galerie</a> }}
-
       </ul>
 
-      <form class="d-flex">
-        <a href="/connexion" class="btn btn-primary" role="button">Connexion</a>
-      </form>
+      <div class="">
+
+        {{#if user}}
+          <div class="text-center">
+            <p>Bienvenue: {{user.name}}</p>
+            {{#if admin}}
+              <p></p>
+            {{/if}}
+          </div>
+          <a href="/logout" class="btn btn-primary ms-3" role="button">Se Déconnecter</a>
+        {{else}}
+          <a
+            href="/connexion"
+            class="btn btn-primary"
+            role="button"
+          >Connexion</a>
+        {{/if}}
+      </div>
     </div>
   </div>
 </nav>

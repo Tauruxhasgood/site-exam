@@ -9,6 +9,7 @@ const
     app = express(),
     mysql = require('mysql'),
     hbs = require('express-handlebars'),
+    expressSession = require('express-session'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     util = require('util'),
@@ -31,6 +32,15 @@ db.connect((err) => {
 
 const query = util.promisify(db.query).bind(db);
 global.query = query;
+
+// Express-session
+app.use(expressSession({
+    secret: 'securite',
+    name: 'petiGato',
+    saveUninitialized: true,
+    resave: false,
+    // cookie: { maxAge : 30000}
+}));
 
 const { inc } = require('./api/helpers')
 
@@ -56,9 +66,12 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('*', (req, res, next) => {
-    res.locals.user = {
-        name: 'Bruno'
-    }
+    // On definit nos variable locals pour pouvoir les utiliser dans notre HBS
+    res.locals.user = req.session.user
+
+    if (req.session.isAdmin === true) res.locals.admin = req.session.isAdmin
+
+    console.log('res.locals: ', req.session)
     next()
 })
 

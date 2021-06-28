@@ -4,8 +4,9 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-// Page de connexio
+// Page de connexion
 exports.get = (req, res) => {
+    console.log('page conn: ', req.session)
     res.render('connexion');
 }
 
@@ -43,7 +44,26 @@ exports.login = async (req, res) => {
             if (results.length > 0) {
                 bcrypt.compare(req.body.password, results[0].password, (err, result) => {
                     if (result) {
-                        return res.render('home', { success: "Vous êtes connecté !" });
+                        req.session.user = {
+                            name: results[0].name,
+                            email: results[0].email,
+                            isAdmin: results[0].isAdmin,
+                            isVerified: results[0].isVerified,
+                            isBann: results[0].isBann,
+                            avatar: results[0].avatar
+                        }
+                        console.log('conn: ', req.session)
+                        res.locals.user = req.session.user
+
+                        if (results[0].isAdmin === 1) {
+                            req.session.isAdmin = true
+                            res.locals.admin = true
+                            return res.redirect('/admin')
+                        } else {
+                            req.session.isAdmin = false
+                            res.locals.admin = false
+                            return res.render('home', { success: "Vous êtes connecté !" });
+                        }
                     } else {
                         return res.render('home', {
                             error: 'Mot de passe incorrect !'
@@ -66,4 +86,12 @@ exports.lostPassword = async (req, res) => {
     console.log('Controller lostPassword: ', req.body)
 
     res.render('connexion');
+}
+
+exports.logout = (req, res) => {
+    req.session.destroy(() => {
+        res.clearCookie('petiGato')
+        console.log(req.session)
+        res.redirect('/')
+    })
 }

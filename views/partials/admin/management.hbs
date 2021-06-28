@@ -23,7 +23,7 @@ Partial: management
         <li class="nav-item pe-2" role="presentation">
             <button class="nav-link bg-dark border border-primary text-white" id="comments-tab" data-bs-toggle="tab"
                 data-bs-target="#comments" type="button" role="tab" aria-controls="comments"
-                aria-selected="false">Commentaires & Avis</button>
+                aria-selected="false">Commentaires</button>
         </li>
         {{!-- GESTION DES ARTICLES --}}
         <li class="nav-item pe-2" role="presentation">
@@ -50,7 +50,7 @@ Partial: management
 
         {{! GESTION DES AVIS ET COMMENTAIRES }}
         <div class=" tab-pane container" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-            {{> admin/tableAvis-Commentaires }}
+            {{> admin/tableCommentaires }}
         </div>
 
 

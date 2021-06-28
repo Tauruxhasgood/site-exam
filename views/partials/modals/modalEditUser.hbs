@@ -43,7 +43,7 @@
           <input type="checkbox" id="isVerified{{ user.id }}" name="isVerified" />
           <label for="">Bann</label>
           <input type="checkbox" id="isBann{{ user.id }}" name="isBann" />
-          <button type="submit">Editer {{ user.name }} </button>
+          {{!-- <button type="submit">Editer {{ user.name }} </button> --}}
 
           <div class="modal-footer">
             <button
@@ -72,9 +72,9 @@
   if ( vrf{{ user.id }} === 1 ) isVerified{{ user.id }}.checked = true
 
   // isBann
-  {{!-- const isBann = document.getElementById('isBann')
-  const bann = 0 
-  if ( bann === 1 ) isBann.checked = true --}}
+  const isBann{{ user.id }} = document.getElementById('isBann{{ user.id }}')
+  const bann{{ user.id }} = {{ isBann }} 
+  if ( bann{{ user.id }} === 1 ) isBann{{ user.id }}.checked = true
   
   
   console.log('ma variable modal: ', typeof adm{{ user.id }}, adm{{ user.id }})

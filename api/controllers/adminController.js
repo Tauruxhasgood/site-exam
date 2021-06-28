@@ -5,7 +5,6 @@
 // const { query } = require("express");
 
 exports.get = async (req, res) => {
-    console.log('Page admin: ')
     res.render('admin', {
         // Quand nous utilisons un layout qui n'est pas celui par default nous devons le spécifié
         layout: 'adminLayout',
@@ -45,7 +44,7 @@ exports.editOne = async (req, res) => {
                    email = '${req.body.email}',
                    isAdmin = '${(req.body.isAdmin === 'on' ? '1' : '0')}',
                    isVerified = '${(req.body.isVerified === 'on' ? '1' : '0')}',
-                   isBann = '${(req.body.isBan === 'on' ? '1' : '0')}'
+                   isBann = '${(req.body.isBann === 'on' ? '1' : '0')}'
                WHERE id = '${req.params.id}';`
 
     await query(sql)
