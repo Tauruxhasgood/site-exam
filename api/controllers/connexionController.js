@@ -62,7 +62,7 @@ exports.login = async (req, res) => {
                         } else {
                             req.session.isAdmin = false
                             res.locals.admin = false
-                            return res.render('home', { success: "Vous êtes connecté !" });
+                            return res.render('home', { success: "Vous êtes connecté !", timeoutLogin: true });
                         }
                     } else {
                         return res.render('home', {

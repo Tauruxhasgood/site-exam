@@ -45,6 +45,7 @@ router.route('/contact')
     .get(contactController.get)
 
 // ADMIN
+    // USER
 router.route('/admin')
     .get(adminController.get)
 
@@ -53,6 +54,10 @@ router.route('/deleteOne/:id')
 
 router.route('/editOne/:id')
     .put(adminController.editOne)
+
+    // ARTICLE
+router.route('/EditArticle/:id')
+    .put(adminController.editArticle)
 
 // USER
 router.route('/user')

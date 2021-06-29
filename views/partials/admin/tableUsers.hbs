@@ -17,6 +17,7 @@
   </thead>
   {{! CONTENU TABLEAU }}
   <tbody>
+    {{!-- listUser qui est déclaré dans le GET de adminController --}}/
     {{#each listUser}}
 
       <tr>
@@ -50,9 +51,10 @@
           ><i class="far fa-edit"></i></button>
         </td>
 
-        <!-- Modal -->
+        <!-- MODAL DELETE ET EDIT -->
 
         {{> modals/modalDeleteUser user=this }}
+        {{!-- user=this correspond à  --}}
 
         {{> modals/modalEditUser user=this }}
 

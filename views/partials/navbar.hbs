@@ -35,6 +35,7 @@ Partial
         <li class="nav-item">
           <a class="nav-link" href="/contact">A propos de nous</a>
         </li>
+        {{!-- Condition qui permet de savoir en se connectant si le visiteur est admin (redirect vers page admin) ou user (redirect vers page Mon compte) --}}
         {{#if admin}}
           <li class="nav-item">
             <a class="nav-link" href="/admin">Admin</a>
@@ -64,11 +65,11 @@ Partial
                 <a class="nav-item nav-link" href="#galerie">Galerie</a> }}
       </ul>
 
-      <div class="">
+      <div class="d-flex">
 
         {{#if user}}
-          <div class="text-center">
-            <p>Bienvenue: {{user.name}}</p>
+          <div class="">
+            <p class="fw-lighter" id="welcome"></p>
             {{#if admin}}
               <p></p>
             {{/if}}
@@ -85,3 +86,15 @@ Partial
     </div>
   </div>
 </nav>
+
+{{#if timeoutLogin }}
+<script>
+  document.getElementById('welcome').innerHTML = "<b>Bienvenue: {{user.name}}</b>"
+
+  function timeOut(){
+    var time = document.getElementById("welcome");
+    time.innerHTML = "";
+  }
+  setTimeout(timeOut, 5000);
+</script>
+{{/if }}

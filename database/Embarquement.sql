@@ -11,10 +11,11 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema Embarquement
 -- -----------------------------------------------------
 
-DROP TABLE user;
-DROP TABLE articles;
-DROP TABLE comments;
-DROP TABLE message;
+DROP DATABASE `Embarquement`;
+-- DROP TABLE user;
+-- DROP TABLE articles;
+-- DROP TABLE comments;
+-- DROP TABLE message;
 -- -----------------------------------------------------
 -- Schema Embarquement
 -- -----------------------------------------------------
@@ -48,9 +49,9 @@ CREATE TABLE IF NOT EXISTS `Embarquement`.`articles` (
   `content` VARCHAR(255) NOT NULL,
   `image` VARCHAR(255) NOT NULL,
   `description` VARCHAR(255) NOT NULL,
-  `created_at` DATE NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `author_id` INT NOT NULL,
-  `edited_at` DATE NULL,
+  `edited_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `fk_articles_user1_idx` (`author_id` ASC) VISIBLE,
   CONSTRAINT `fk_articles_user1`

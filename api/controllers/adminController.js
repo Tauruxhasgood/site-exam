@@ -4,15 +4,21 @@
 
 // const { query } = require("express");
 
+// const { query } = require("express");
+
+
+
 exports.get = async (req, res) => {
     res.render('admin', {
         // Quand nous utilisons un layout qui n'est pas celui par default nous devons le spécifié
         layout: 'adminLayout',
         // listUser qui est récupéré dans la boucle #each du partial admin > tableUsers.hbs
-        listUser: await query('SELECT * FROM user')
+        listUser: await query('SELECT * FROM user'),
+        listArticle: await query(`SELECT * FROM articles`)
     })
 }
 
+// CONTROLLER POUR GERER LES UTILISATEURS
 
 exports.deleteOne = async (req, res) => {
 
@@ -49,5 +55,21 @@ exports.editOne = async (req, res) => {
 
     await query(sql)
 
+    res.redirect('/admin')
+}
+
+// CONTROLLER POUR GERER LES ARTICLES
+
+exports.editArticle = async (req, res) => {
+    console.log('Controller Edit article :', req.body)
+
+    let sql = `UPDATE articles
+               SET image = '${req.body.image}',
+                   title = '${req.body.title}',
+                   description = '${req.body.description}',
+                   content = '${req.body.content}'
+               WHERE id = '${req.params.id}';`
+
+    await query(sql)
     res.redirect('/admin')
 }
