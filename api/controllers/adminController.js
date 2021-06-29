@@ -73,3 +73,7 @@ exports.editArticle = async (req, res) => {
     await query(sql)
     res.redirect('/admin')
 }
+
+exports.deleteArticle = async (req,res) => {
+    console.log('Controller delete article :', req.body)
+}
