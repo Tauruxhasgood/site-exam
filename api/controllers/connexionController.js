@@ -20,8 +20,8 @@ exports.create = async (req, res) => {
     console.log("controlleur create user : ", req.body)
     // en mode async
     // await query(sql, [values])
-
-    await db.query(sql, [values], function (err, data, fields) {
+    console.log('que contient value :',values)
+    await query(sql, [values], function (err, data, fields) {
         if (err) console.log(err)
         res.render('connexion', {
             success: 'Votre compte à bien été créé !'
@@ -37,7 +37,7 @@ exports.login = async (req, res) => {
 
     console.log('body login :', req.body.email)
 
-    await db.query(sql, [email], (error, results, fields) => {
+    await query(sql, [email], (error, results, fields) => {
         if (error) throw error;
         else {
             console.log('Controller login: ', results)

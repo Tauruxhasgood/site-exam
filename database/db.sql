@@ -1,2 +1,2 @@
-CREATE DATABASE `Embarquement` CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- CREATE DATABASE `Embarquement` CHARACTER SET utf8 COLLATE utf8_general_ci;
 
