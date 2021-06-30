@@ -80,13 +80,7 @@ exports.login = async (req, res) => {
     })
 }
 
-// Method Lost password
-// Nodemailer 
-exports.lostPassword = async (req, res) => {
-    console.log('Controller lostPassword: ', req.body)
 
-    res.render('connexion');
-}
 
 exports.logout = (req, res) => {
     req.session.destroy(() => {
@@ -95,3 +89,4 @@ exports.logout = (req, res) => {
         res.redirect('/')
     })
 }
+

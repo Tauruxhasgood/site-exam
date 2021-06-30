@@ -9,13 +9,14 @@ const express = require('express'),
  * Controller
  *************/
 const homeController = require('./controllers/homeController'),
-    blogController = require('./controllers/blogController'),
-    // blogIdController = require('./controllers/blogIdController'),
-    contactController = require('./controllers/contactController'),
-    adminController = require('./controllers/adminController'),
-    userController = require('./controllers/userController'),
-    connexionController = require('./controllers/connexionController'),
-    feedController = require('./controllers/rssController')
+      blogController = require('./controllers/blogController'),
+      // blogIdController = require('./controllers/blogIdController'),
+      contactController = require('./controllers/contactController'),
+      adminController = require('./controllers/adminController'),
+      userController = require('./controllers/userController'),
+      connexionController = require('./controllers/connexionController'),
+      feedController = require('./controllers/rssController'),
+      nodemailerController = require('./controllers/nodemailerController')
 
 /*
  * Router
@@ -24,6 +25,7 @@ const homeController = require('./controllers/homeController'),
 // HOME
 router.route('/')
     .get(homeController.get)
+
 
 // BLOG
 
@@ -78,9 +80,18 @@ router.route('/register')
 router.route('/login')
     .post(connexionController.login)
 
-// - MDP lost
-router.route('/lostPassword')
-    .post(connexionController.lostPassword)
+// NODEMAILER
+    // email TEST
+
+// router.route('/nodemailerTest')
+//     .post(nodemailerController.test)
+
+    // email de VERIFICATION
+router.route('/verification')
+    .post(nodemailerController.sendVerif)
+
+router.route('/editPassword/:id')
+    .get(nodemailerController.verifMail)
 
 // FEED
 router.route('/feed')

@@ -17,12 +17,14 @@ const
 
 app.use(methodOverride('_method'))
 
+require('dotenv').config()
+
 //mySQL
 db = mysql.createConnection({
-    host: "localhost",
-    user: "cedric",
-    password: "Cedric310785/*-!",
-    database: 'Embarquement'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
 db.connect((err) => {
