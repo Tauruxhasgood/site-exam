@@ -83,6 +83,7 @@ exports.sendVerif = async (req, res) => {
 
 exports.verifMail = async (req, res) => {
     console.log('check editpassword: ', rand)
+    
     if (!mailOptions) return res.render('connexion', { error: 'Une erreur est survenu !' })
     if (Number(req.params.id) !== rand) return res.render('connexion', { error: 'Une erreur est survenu !' })
 

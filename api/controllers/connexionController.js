@@ -5,6 +5,18 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const saltRounds = 10;
 
+require('dotenv').config()
+
+transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    service: 'gmail',
+    port: '587',
+    auth: {
+        user: process.env.MAILER_EMAIL,
+        pass: process.env.MAILER_PASSWORD
+    }
+})
+
 var rand, mailOptions, host, link;
 
 // Page de connexion
@@ -43,7 +55,7 @@ exports.create = async (req, res) => {
                     <h5>Cliquer sur le lien suivant afin de finir la procédure de validation de votre mail !</h5><br>
                     <a href=" ` + link + ` ">Cliquez ici pour vérifier</a>`
         }
-        console.log(mailOptions)
+        console.log('Données de mailOption :', mailOptions)
 
         transporter.sendMail(mailOptions, (err, res, next) => {
             if (err) {
@@ -65,7 +77,14 @@ exports.create = async (req, res) => {
 }
 
 exports.verificationMail = async (req, res) => {
-    console.log('body verif mail', rand);
+    console.log('Retour de l\'email :', mailOptions.to, req.body);
+
+    // if (!mailOptions) return res.render('connexion', { error: 'Une erreur est survenue !' })
+    // if (Number(req.params.id) !== rand) return res.render('connexion', { error: 'Une erreur est survenue !'})
+
+    // const user = await query(`SELECT * FROM user WHERE email = "${mailOptions.to}"`)
+
+    // console.log('Mail de confirmation :', user);
 }
 
 // Se connecter
