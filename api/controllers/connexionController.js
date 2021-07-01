@@ -2,7 +2,10 @@
  * Controller
  *************/
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 const saltRounds = 10;
+
+var rand, mailOptions, host, link;
 
 // Page de connexion
 exports.get = (req, res) => {
@@ -18,15 +21,51 @@ exports.create = async (req, res) => {
     let sql = `INSERT INTO user (name, email, password) values(?)`;
     let values = [req.body.name, req.body.email, encryptedPassword];
     console.log("controlleur create user : ", req.body)
-    // en mode async
-    // await query(sql, [values])
-    console.log('que contient value :',values)
-    await query(sql, [values], function (err, data, fields) {
+
+
+    await query(sql, [values], async function (err, data, fields) {
         if (err) console.log(err)
-        res.render('connexion', {
-            success: 'Votre compte à bien été créé !'
+
+        const user = await query(`SELECT * FROM user where email = "${req.body.email}";`)
+
+
+        rand = Math.floor((Math.random() * 100) + 54);
+        host = req.get('host');
+        link = "http://" + req.get('host') + "/verification/" + rand;
+
+        mailOptions = {
+            from: 'embarquementimmediat7@gmail.com',
+            to: user[0].email,
+            subject: "Veuillez confirmez votre Email svp.",
+            rand: rand,
+            html: `
+                    <h2>Encore un petit effort</h2><br>
+                    <h5>Cliquer sur le lien suivant afin de finir la procédure de validation de votre mail !</h5><br>
+                    <a href=" ` + link + ` ">Cliquez ici pour vérifier</a>`
+        }
+        console.log(mailOptions)
+
+        transporter.sendMail(mailOptions, (err, res, next) => {
+            if (err) {
+                console.log(err)
+                res.end("error")
+            } else {
+                console.log("Message Envoyer")
+                next()
+            }
         })
+        res.render('connexion', {
+            success: 'Votre compte à bien été créé merci de vérifier vos emails !'
+        })
+        // console.log('Data Register: ', data, user[0])
+        // res.render('connexion', {
+        //     success: 'Votre compte à bien été créé !'
+        // })
     })
+}
+
+exports.verificationMail = async (req, res) => {
+    console.log('body verif mail', rand);
 }
 
 // Se connecter
@@ -37,7 +76,7 @@ exports.login = async (req, res) => {
 
     console.log('body login :', req.body.email)
 
-    await query(sql, [email], (error, results, fields) => {
+    await query(sql, [email], (error, results) => {
         if (error) throw error;
         else {
             console.log('Controller login: ', results)
@@ -80,6 +119,10 @@ exports.login = async (req, res) => {
     })
 }
 
+exports.verificationMail = (req, res) => {
+    console.log('Controller Page Verification: ', req.params)
+    res.render('verifMail');
+}
 
 
 exports.logout = (req, res) => {

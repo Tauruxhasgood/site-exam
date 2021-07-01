@@ -9,14 +9,14 @@ const express = require('express'),
  * Controller
  *************/
 const homeController = require('./controllers/homeController'),
-      blogController = require('./controllers/blogController'),
-      // blogIdController = require('./controllers/blogIdController'),
-      contactController = require('./controllers/contactController'),
-      adminController = require('./controllers/adminController'),
-      userController = require('./controllers/userController'),
-      connexionController = require('./controllers/connexionController'),
-      feedController = require('./controllers/rssController'),
-      nodemailerController = require('./controllers/nodemailerController')
+    blogController = require('./controllers/blogController'),
+    // blogIdController = require('./controllers/blogIdController'),
+    contactController = require('./controllers/contactController'),
+    adminController = require('./controllers/adminController'),
+    userController = require('./controllers/userController'),
+    connexionController = require('./controllers/connexionController'),
+    feedController = require('./controllers/rssController'),
+    nodemailerController = require('./controllers/nodemailerController')
 
 /*
  * Router
@@ -47,7 +47,7 @@ router.route('/contact')
     .get(contactController.get)
 
 // ADMIN
-    // USER
+// USER
 router.route('/admin')
     .get(adminController.get)
 
@@ -57,7 +57,7 @@ router.route('/deleteOne/:id')
 router.route('/editOne/:id')
     .put(adminController.editOne)
 
-    // ARTICLE
+// ARTICLE
 router.route('/EditArticle/:id')
     .put(adminController.editArticle)
 
@@ -76,22 +76,29 @@ router.route('/logout')
 router.route('/register')
     .post(connexionController.create)
 
+
+
 // - Se connecter
 router.route('/login')
     .post(connexionController.login)
 
 // NODEMAILER
-    // email TEST
+// email TEST
 
 // router.route('/nodemailerTest')
 //     .post(nodemailerController.test)
 
-    // email de VERIFICATION
+// email de VERIFICATION
 router.route('/verification')
     .post(nodemailerController.sendVerif)
 
+router.route('/verification/:id')
+    .get(connexionController.verificationMail)
+
+// vérif email et update password
 router.route('/editPassword/:id')
     .get(nodemailerController.verifMail)
+    .post(nodemailerController.updatePassword)
 
 // FEED
 router.route('/feed')
