@@ -76,17 +76,6 @@ exports.create = async (req, res) => {
     })
 }
 
-exports.verificationMail = async (req, res) => {
-    console.log('Retour de l\'email :', mailOptions.to, req.body);
-
-    // if (!mailOptions) return res.render('connexion', { error: 'Une erreur est survenue !' })
-    // if (Number(req.params.id) !== rand) return res.render('connexion', { error: 'Une erreur est survenue !'})
-
-    // const user = await query(`SELECT * FROM user WHERE email = "${mailOptions.to}"`)
-
-    // console.log('Mail de confirmation :', user);
-}
-
 // Se connecter
 exports.login = async (req, res) => {
 
@@ -134,15 +123,52 @@ exports.login = async (req, res) => {
                 })
             }
         }
-
     })
 }
 
-exports.verificationMail = (req, res) => {
-    console.log('Controller Page Verification: ', req.params)
-    res.render('verifMail');
+exports.verificationMail = async (req, res) => {
+    console.log('Controller Page Verification: ', rand)
+
+    const user = await query(`SELECT * FROM user WHERE email = "${mailOptions.to}"`)
+    console.log('Récup mail :', user);
+
+    if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
+        console.log("Domain is matched. Information is from Authentic email");
+
+        if (req.params.id == mailOptions.rand) {
+            console.log("email is verified: ", user[0]);
+            res.render('verifMail', {
+                user: user[0]
+            })
+        } else {
+            res.render('verifMail', {
+                message: "Bad request !"
+            })
+        }
+    } else {
+        res.render('verifMail', {
+            message: "request is form unknown source !"
+        })
+    }
 }
 
+exports.verificationMailPost = async (req, res) => {
+    console.log('Verif mail post :', req.body);
+
+    const user = await query(`SELECT * FROM user WHERE id = '${req.params.id}';`)
+
+    if (user) {
+        await query(`UPDATE user 
+                     SET isVerified = 1
+                     WHERE id = '${req.params.id}';`)
+
+        res.render('connexion', {
+            success: 'Votre compte a bien été vérifié !'
+        })
+    } else {
+        res.redirect('/')
+    }
+}
 
 exports.logout = (req, res) => {
     req.session.destroy(() => {
@@ -151,4 +177,3 @@ exports.logout = (req, res) => {
         res.redirect('/')
     })
 }
-

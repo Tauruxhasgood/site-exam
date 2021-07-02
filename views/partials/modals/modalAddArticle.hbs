@@ -16,29 +16,29 @@
                             </h2>
                         </div>
                         {{!-- FORMULAIRE AJOUT ARTICLE --}}
-                        <form action="" class=" pt-3  row pe-2  border-top border-primary">
+                        <form action="/addArticle" method="post" class=" pt-3  row pe-2  border-top border-primary">
                             {{!-- INPUT IMAGE --}}
                             <div class="col-md-12 pt-5">
                                 <label for="for">Image de l'article</label>
-                                <input type="file" name="" id="for">
+                                <input type="file" name="image" id="for">
                             </div>
                             {{!-- INPUT TITRE ARTICLE --}}
                             <div class="col-md-12 pt-5">
                                 <label for="email" class="form-label text-primary">Titre de
                                     l'article</label>
-                                <input type="text" placeholder="Noix de coco" class="form-control bg-dark text-white"
+                                <input type="text" name="title" placeholder="Noix de coco" class="form-control bg-dark text-white"
                                     id="artTitle" required>
                             </div>
                             {{!-- INPUT DESCRIPTION ARTICLE --}}
                             <div class="col-12 ">
                                 <label for="sujet" class="form-label text-primary">Description:</label>
-                                <input type="text" class="form-control bg-dark text-white" id="artDescription"
+                                <input type="text" name="description" class="form-control bg-dark text-white" id="artDescription"
                                     placeholder="description super géniale" required>
                             </div>
                             {{!-- INPUT CONTENU ARTICLE --}}
                             <div class="col-12 ">
                                 <label for="message" class="form-label text-dark">Contenu:</label>
-                                <textarea name="" class="form-control bg-dark text-white" id="artContenu"
+                                <textarea name="content" class="form-control bg-dark text-white" id="artContenu"
                                     placeholder="inserez du contenu" cols="30" rows="10" required></textarea>
                             </div>
                             {{!-- CASE ACCEPTER CGU --}}

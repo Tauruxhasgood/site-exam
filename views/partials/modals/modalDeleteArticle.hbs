@@ -21,15 +21,18 @@
           ></button>
         </div>
         <div class="modal-body text-dark">
-          -Suppression de : *super article*
+          Suppression de : {{ this.title }}
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-danger"
-            data-bs-dismiss="modal"
-          >Annuler</button>
-          <button type="button" class="btn btn-success">Appliquer</button>
+          <form action="/deleteArticle/{{ this.id }}?_method=DELETE" method="post">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >Annuler</button>
+            <button type="button" class="btn btn-success">Appliquer</button>
+          </form>
+
         </div>
       </div>
     </div>

@@ -2,12 +2,6 @@
  * Controller
  *************/
 
-// const { query } = require("express");
-
-// const { query } = require("express");
-
-
-
 exports.get = async (req, res) => {
     res.render('admin', {
         // Quand nous utilisons un layout qui n'est pas celui par default nous devons le spécifié
@@ -60,6 +54,7 @@ exports.editOne = async (req, res) => {
 
 // CONTROLLER POUR GERER LES ARTICLES
 
+// Pour éditer un article
 exports.editArticle = async (req, res) => {
     console.log('Controller Edit article :', req.body)
 
@@ -74,6 +69,19 @@ exports.editArticle = async (req, res) => {
     res.redirect('/admin')
 }
 
-exports.deleteArticle = async (req,res) => {
+// Pour créer un article
+exports.createArt = async (req, res) => {
+    console.log('Controller add article :', req.body);
+
+    let sql = `INSERT INTO articles (image, title, description, content, author_id) values(?)`;
+    let values = [req.body.image, req.body.title, req.body.description, req.body.content, 1];
+
+    console.log('Données ajouter :', req.body);
+
+    await query(sql, [values])
+    res.redirect('/admin')
+}
+
+exports.deleteArticle = async (req, res) => {
     console.log('Controller delete article :', req.body)
 }

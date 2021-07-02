@@ -58,8 +58,14 @@ router.route('/editOne/:id')
     .put(adminController.editOne)
 
 // ARTICLE
-router.route('/EditArticle/:id')
+router.route('/editArticle/:id')
     .put(adminController.editArticle)
+
+router.route('/addArticle')
+    .post(adminController.createArt)
+
+router.route('/deleteOneArt/:id')
+    .delete(adminController.deleteArticle)
 
 // USER
 router.route('/user')
@@ -94,6 +100,7 @@ router.route('/verification')
 
 router.route('/verification/:id')
     .get(connexionController.verificationMail)
+    .post(connexionController.verificationMailPost)
 
 // vérif email et update password
 router.route('/editPassword/:id')
