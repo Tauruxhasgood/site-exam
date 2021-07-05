@@ -3,7 +3,9 @@
  ****************/
 const express = require('express'),
     router = express.Router(),
+    upload = require('./config/multer'),
     path = require('path')
+
 
 /*
  * Controller
@@ -52,17 +54,17 @@ router.route('/admin')
     .get(adminController.get)
 
 router.route('/deleteOne/:id')
-    .delete(adminController.deleteOne)
+    .delete(adminController.deleteOneUser)
 
 router.route('/editOne/:id')
-    .put(adminController.editOne)
+    .put(adminController.editOneUser)
 
 // ARTICLE
 router.route('/editArticle/:id')
-    .put(adminController.editArticle)
+    .put(upload.single('imgArticle'), adminController.editArticle)
 
 router.route('/addArticle')
-    .post(adminController.createArt)
+    .post(upload.single('imgArticle'), adminController.createArt)
 
 router.route('/deleteOneArt/:id')
     .delete(adminController.deleteArticle)

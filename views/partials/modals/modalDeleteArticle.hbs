@@ -3,15 +3,15 @@
   <!-- MODAL SUPPRESSION ARTICLE -->
   <div
     class="modal fade"
-    id="deleteArticle"
+    id="deleteArticle{{ articles.id }}"
     tabindex="-1"
-    aria-labelledby="exampleModalLabel"
+    aria-labelledby="deleteArticleLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Êtes vous sûr de
+          <h5 class="modal-title" id="deleteArticleLable">Êtes vous sûr de
             vouloir supprimer cet article ?</h5>
           <button
             type="button"
@@ -24,13 +24,13 @@
           Suppression de : {{ this.title }}
         </div>
         <div class="modal-footer">
-          <form action="/deleteArticle/{{ this.id }}?_method=DELETE" method="post">
+          <form action="/deleteOneArt/{{ this.id }}?_method=DELETE" method="post">
             <button
               type="button"
               class="btn btn-danger"
               data-bs-dismiss="modal"
             >Annuler</button>
-            <button type="button" class="btn btn-success">Appliquer</button>
+            <button type="submit" class="btn btn-success">Appliquer</button>
           </form>
 
         </div>

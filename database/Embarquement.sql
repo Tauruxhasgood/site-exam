@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `Embarquement`.`articles` (
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `author_id` INT NOT NULL,
   `edited_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` VARCHAR(255),
   PRIMARY KEY (`id`),
   INDEX `fk_articles_user1_idx` (`author_id` ASC) VISIBLE,
   CONSTRAINT `fk_articles_user1`
