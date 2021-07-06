@@ -3,8 +3,7 @@
  ****************/
 const express = require('express'),
     router = express.Router(),
-    upload = require('./config/multer'),
-    path = require('path')
+    path = require('path');
 
 
 /*
@@ -18,7 +17,14 @@ const homeController = require('./controllers/homeController'),
     userController = require('./controllers/userController'),
     connexionController = require('./controllers/connexionController'),
     feedController = require('./controllers/rssController'),
-    nodemailerController = require('./controllers/nodemailerController')
+    nodemailerController = require('./controllers/nodemailerController');
+
+/*
+ * Middleware
+ * ********** */
+const upload = require('./config/multer');
+// const faisant appel au middleware admin.js et déclarer dans le .get de ADMIN
+const isAdmin = require('./middleware/admin');
 
 /*
  * Router
@@ -31,16 +37,11 @@ router.route('/')
 
 // BLOG
 
-// - Blog
+// - Articles
 router.route('/blog')
     .get(blogController.pageBlog)
 
-// - Blog
-router.route('/article')
-    // .post(blogController.create)
-    .put(blogController.edit)
-
-// - BlogId
+// - ArticleId
 router.route('/article/:id')
     .get(blogController.pageBlogID)
 
@@ -51,7 +52,7 @@ router.route('/contact')
 // ADMIN
 // USER
 router.route('/admin')
-    .get(adminController.get)
+    .get(isAdmin, adminController.get)
 
 router.route('/deleteOne/:id')
     .delete(adminController.deleteOneUser)

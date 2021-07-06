@@ -1,21 +1,20 @@
 /*
  * Module
- * ****** */ 
+ * ****** */
 const simulate = require('../simulate.json').reverse().slice(0, 6)
 
 /*
  * Controller
- *************/ 
-module.exports = {
-    get: (req, res) => {
-        // console.log('Page Blog', simulate)
-        // const user = {
-        //     name: 'Bruno'
-        // }
+ *************/
+exports.get = async (req, res) => {
+
+        const dbArticle = await query(`SELECT * FROM articles`)
+        // Reverse permet d'afficher les articles par ordre décroissants et slice permet de limiter le nombre d'articles à 6 
+        const reverse = dbArticle.reverse().slice(0, 6)
+
+        console.log('Info de reverse :', reverse)
 
         res.render('home', {
-            // user,
-            dbArticle: simulate
+            dbArticle: reverse
         })
     }
-}

@@ -6,14 +6,22 @@
       <div class="col-md-12 pb-2">
         <div class="card" style="width: auto;">
           <img
-            src="{{artID.img}}"
+            src="{{artID.image}}"
             style="height:700px;"
             class="card-img-top"
             alt="australie"
           />
           <div class="card-body text-center">
             <h2 class="card-title text-center mb-4">{{artID.title}}</h2>
+            <p class="card-text">
+              Créer le :
+              {{moment artID.created_at format="DD/MM/YYYY HH:mm:ss"}}
+              Edité le :
+              {{moment artID.edited_at format="DD/MM/YYYY HH:mm:ss"}}</p>
+
             <p class="card-text"> {{artID.description}} </p>
+            <p class="card-text"> {{artID.content}}</p>
+            {{!-- <p class="card-text"> {{{ text }}} </> --}}
           </div>
         </div>
       </div>

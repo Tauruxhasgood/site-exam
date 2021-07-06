@@ -62,33 +62,39 @@ exports.editOneUser = async (req, res) => {
 exports.editArticle = async (req, res) => {
     console.log('Controller Edit article :', req.body)
 
-    const article = await query(`SELECT * FROM articles WHERE id = '${req.params.id}'`)
-    console.log('info article :', article);
 
-    const pathImg = path.resolve("public/images/" + article[0].name)
+
 
     if (!req.file) {
-        await query (`UPDATE articles
-                      SET title = '${req.body.title}',
-                          description = '${req.body.description}',
-                          content = '${req.body.content}'
-                      WHERE id = '${req.params.id}';`)
-        console.log('Contenu de content :',req.body.content);
+        const sql = `UPDATE articles
+                      SET title = "${req.body.title}",
+                          description = "${req.body.description}",
+                          content = "${req.body.content}"
+                      WHERE id = "${req.params.id}";`
 
-        
+        console.log('Contenu de content :', req.body.content);
 
+        await query(sql)
         res.redirect('/admin')
 
     } else {
-        await query (`UPDATE articles
-                   SET image = '/assets/images/${req.file.completed}',
-                        title = '${req.body.title}',
-                        description = '${req.body.description}',
-                        content = '${req.body.content}',
-                        name = '${req.file.completed}'
-                   WHERE id = '${req.params.id}';`)
 
-        
+        const article = await query(`SELECT * FROM articles WHERE id = '${req.params.id}'`)
+        console.log('info article :', article);
+
+        const sql = `UPDATE articles
+                     SET image = "/assets/images/${req.file.completed}",
+                        title = "${req.body.title}",
+                        description = "${req.body.description}",
+                        content = "${req.body.content}",
+                        name = "${req.file.completed}"
+                     WHERE id = "${req.params.id}";`
+
+        await query(sql)
+
+        const pathImg = path.resolve("public/images/" + article[0].name)
+
+
 
         fs.unlink(pathImg, (err) => {
             if (err) console.log(err);
@@ -102,7 +108,7 @@ exports.createArt = async (req, res) => {
     console.log('Controller add article :', req.body);
 
     let sql = `INSERT INTO articles (image, title, description, content, author_id, name) values(?)`;
-    let values = [`/assets/images/${req.file.completed}`, req.body.title, req.body.description, req.body.content, 1, `${req.file.originalname}`];
+    let values = [`/assets/images/${req.file.completed}`, req.body.title, req.body.description, `${req.body.content}`, 1, `${req.file.originalname}`];
 
     console.log('Données ajouter :', req.file);
 

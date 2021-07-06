@@ -15,6 +15,11 @@ const
     util = require('util'),
     port = process.env.PORT || 3000;
 
+const Handlebars = require("handlebars");
+const MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
+
+
 app.use(methodOverride('_method'))
 
 require('dotenv').config()
@@ -45,12 +50,14 @@ app.use(expressSession({
 }));
 
 const { inc } = require('./api/helpers')
+const { limitArray } = require('./api/helpers')
 
 // Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
     helpers: {
-        inc
+        inc,
+        limitArray
     },
     extname: 'hbs',
     defaultLayout: 'main',
