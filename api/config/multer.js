@@ -12,6 +12,9 @@ const storage = multer.diskStorage({
         const ext = file.originalname,
             date = Date.now(),
             completed = date + '_' + ext;
+            
+        // console.log('REQFILLLE:', req.body)
+        // req.body.onSenBranle = completed
 
         file.completed = completed
         cb(null, completed)

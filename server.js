@@ -89,6 +89,9 @@ app.use('*', (req, res, next) => {
 const ROUTER = require('./api/router')
 app.use('/', ROUTER)
 
+const ROUTER_API = require('./api/router_api')
+app.use('/api/v1', ROUTER_API)
+
 // app.use((req, res) => {
 //     res.render('err404')
 // })
@@ -97,3 +100,5 @@ app.use('/', ROUTER)
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });
+
+module.exports = app
