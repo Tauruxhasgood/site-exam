@@ -1,0 +1,588 @@
+{
+    "definitions": {},
+    "info": {
+      "title": "architecture-nodejs-base",
+      "version": "1.0.0",
+      "license": {
+        "name": "ISC"
+      },
+      "description": "Specification JSONs: [v2](/api-spec/v2), [v3](/api-spec/v3).\n\nTuto nodejs Basic"
+    },
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "/",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/blog": {
+        "get": {
+          "summary": "/blog",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/article/{id}": {
+        "get": {
+          "summary": "/article/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/contact": {
+        "get": {
+          "summary": "/contact",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/admin": {
+        "get": {
+          "summary": "/admin",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/deleteOne/{id}": {
+        "delete": {
+          "summary": "/deleteOne/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/editOne/{id}": {
+        "put": {
+          "summary": "/editOne/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/editArticle/{id}": {
+        "put": {
+          "summary": "/editArticle/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/addArticle": {
+        "post": {
+          "summary": "/addArticle",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/deleteOneArt/{id}": {
+        "delete": {
+          "summary": "/deleteOneArt/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/deleteAll": {
+        "delete": {
+          "summary": "/deleteAll",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/user": {
+        "get": {
+          "summary": "/user",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/connexion": {
+        "get": {
+          "summary": "/connexion",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/logout": {
+        "get": {
+          "summary": "/logout",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/register": {
+        "post": {
+          "summary": "/register",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/login": {
+        "post": {
+          "summary": "/login",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/verification": {
+        "post": {
+          "summary": "/verification",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/verification/{id}": {
+        "get": {
+          "summary": "/verification/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        },
+        "post": {
+          "summary": "/verification/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/editPassword/{id}": {
+        "get": {
+          "summary": "/editPassword/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        },
+        "post": {
+          "summary": "/editPassword/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/feed": {
+        "get": {
+          "summary": "/feed",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1": {
+        "get": {
+          "summary": "/api/v1",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/blog": {
+        "get": {
+          "summary": "/api/v1/blog",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/article/{id}": {
+        "get": {
+          "summary": "/api/v1/article/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/contact": {
+        "get": {
+          "summary": "/api/v1/contact",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/admin": {
+        "get": {
+          "summary": "/api/v1/admin",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/deleteOne/{id}": {
+        "delete": {
+          "summary": "/api/v1/deleteOne/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/editOne/{id}": {
+        "put": {
+          "summary": "/api/v1/editOne/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/editArticle/{id}": {
+        "put": {
+          "summary": "/api/v1/editArticle/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/addArticle": {
+        "post": {
+          "summary": "/api/v1/addArticle",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/deleteOneArt/{id}": {
+        "delete": {
+          "summary": "/api/v1/deleteOneArt/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/user": {
+        "get": {
+          "summary": "/api/v1/user",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/connexion": {
+        "get": {
+          "summary": "/api/v1/connexion",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/logout": {
+        "get": {
+          "summary": "/api/v1/logout",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/register": {
+        "post": {
+          "summary": "/api/v1/register",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/login": {
+        "post": {
+          "summary": "/api/v1/login",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/verification": {
+        "post": {
+          "summary": "/api/v1/verification",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/verification/{id}": {
+        "get": {
+          "summary": "/api/v1/verification/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        },
+        "post": {
+          "summary": "/api/v1/verification/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/editPassword/{id}": {
+        "get": {
+          "summary": "/api/v1/editPassword/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        },
+        "post": {
+          "summary": "/api/v1/editPassword/{id}",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "responses": {},
+          "tags": []
+        }
+      },
+      "/api/v1/feed": {
+        "get": {
+          "summary": "/api/v1/feed",
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responses": {},
+          "tags": []
+        }
+      }
+    },
+    "swagger": "2.0",
+    "tags": []
+  }

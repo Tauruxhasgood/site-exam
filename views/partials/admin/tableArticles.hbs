@@ -56,11 +56,18 @@
 </table>
 {{!-- BOUTON AJOUTER UN ARTICLE --}}
 <div class="pb-5">
-    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal7">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addArticle">
         Ajouter un article
+    </button>
+</div>
+<div class="pb-5">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#deleteAll">
+        Delete All Articles
     </button>
 </div>
 
 {{!-- MODAL AJOUTER UN ARTICLE --}}
 
 {{> modals/modalAddArticle }}
+
+{{> modals/modalDeleteAllArticle }}

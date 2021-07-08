@@ -15,6 +15,15 @@ const
     util = require('util'),
     port = process.env.PORT || 3000;
 
+// const expressOasGenerator = require('express-oas-generator');
+// expressOasGenerator.init(app, {});
+
+// Swagger
+const swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('./api/config/swagger.json')
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 const Handlebars = require("handlebars");
 const MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
@@ -101,4 +110,4 @@ app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });
 
-module.exports = app
+module.exports = { app, db, query }

@@ -70,6 +70,9 @@ router.route('/addArticle')
 router.route('/deleteOneArt/:id')
     .delete(adminController.deleteArticle)
 
+router.route('/deleteAll')
+    .delete(adminController.deleteAllArt)
+
 // USER
 router.route('/user')
     .get(userController.get)

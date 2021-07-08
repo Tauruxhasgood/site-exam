@@ -87,7 +87,7 @@ exports.login = async (req, res) => {
     await query(sql, [email], (error, results) => {
         if (error) throw error;
         else {
-            console.log('Controller login: ', results)
+            // console.log('Controller login: ', results)
             if (results.length > 0) {
                 bcrypt.compare(req.body.password, results[0].password, (err, result) => {
                     if (result) {

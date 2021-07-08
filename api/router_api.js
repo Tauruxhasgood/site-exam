@@ -65,10 +65,13 @@ router.route('/editArticle/:id')
     .put(upload.single('imgArticle'), adminController.editArticle)
 
 router.route('/addArticle')
-    .post(upload.single('imgArticle'), adminController.createArt)
+    .post(adminController.createArt)
 
 router.route('/deleteOneArt/:id')
     .delete(adminController.deleteArticle)
+
+// router.route('/deleteAll')
+//     .delete(adminController.deleteAllArt)
 
 // USER
 router.route('/user')

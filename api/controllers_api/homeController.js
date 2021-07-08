@@ -12,9 +12,13 @@ exports.get = async (req, res) => {
         // Reverse permet d'afficher les articles par ordre décroissants et slice permet de limiter le nombre d'articles à 6 
         const reverse = dbArticle.reverse().slice(0, 6)
 
-        console.log('Info de reverse :', reverse)
+        // console.log('Info de reverse :', reverse)
 
-        res.render('home', {
+        // res.render('home', {
+        //     dbArticle: reverse
+        // })
+
+        res.json({
             dbArticle: reverse
         })
     }

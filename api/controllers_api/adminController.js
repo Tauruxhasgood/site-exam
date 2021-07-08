@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 
 exports.get = async (req, res) => {
-    res.status(200).json({message: "Connection OK"})
+    // res.status(200).json({message: "Connection OK"})
     // res.render('admin', {
     //     // Quand nous utilisons un layout qui n'est pas celui par default nous devons le spécifié
     //     layout: 'adminLayout',
@@ -15,6 +15,13 @@ exports.get = async (req, res) => {
     //     listUser: await query('SELECT * FROM user'),
     //     listArticle: await query(`SELECT * FROM articles`)
     // })
+    res.json({
+        // Quand nous utilisons un layout qui n'est pas celui par default nous devons le spécifié
+        layout: 'adminLayout',
+        // listUser qui est récupéré dans la boucle #each du partial admin > tableUsers.hbs
+        listUser: await query('SELECT * FROM user'),
+        listArticle: await query(`SELECT * FROM articles`)
+    })
 }
 
 // CONTROLLER POUR GERER LES UTILISATEURS
@@ -61,73 +68,78 @@ exports.editOneUser = async (req, res) => {
 
 // Pour créer un article
 exports.createArt = async (req, res) => {
-    console.log('Controller add article :', req.body);
-    console.log('fgfr:', req.file)
+    // console.log('Controller add article :', req.body);
+    // console.log('fgfr:', req.file)
 
-    let sql = `INSERT INTO articles (image, title, description, content, author_id, name) values(?)`;
-    let values = [`/assets/images/${req.file.completed}`, req.body.title, req.body.description, `${req.body.content}`, 1, `${req.file.completed}`];
+    let sql = `INSERT INTO articles (title, description, content, author_id) values(?)`;
+    let values = [req.body.title, req.body.description, `${req.body.content}`, 1];
 
     await query(sql, [values])
-    
-    console.log('Données ajouter :', req.file);
 
-    res.status(200).json({message:"Création d'article ok"})
+    // console.log('Données ajouter :', req.file);
+
+    // Modification en RES.JSON pour avoir les informations envoyés sous format JSON
+    res.status(200).json([await query(sql, [values])])
     // res.redirect('/admin')
 }
 
 // Pour éditer un article
 exports.editArticle = async (req, res) => {
-    console.log('Controller Edit article :', req.body)
-    console.log('fgfr:', req.file)
+    // console.log('Controller Edit article :', req.body)
+    // console.log('fgfr:', req.file)
 
-    if (!req.file) {
-        const sql = `UPDATE articles
+    // if (!req.file) {
+    const sql = `UPDATE articles
                       SET title = "${req.body.title}",
                           description = "${req.body.description}",
                           content = "${req.body.content}"
                       WHERE id = "${req.params.id}";`
 
-        console.log('Contenu de content :', req.body.content);
+    console.log('Contenu de content :', req.body.content);
 
-        await query(sql)
-        res.status(200).json({message:"Edition de l'article sans image ok"})
+    await query(sql)
 
-    } else {
+    res.json({
+        message: await query(`SELECT * FROM articles WHERE id = 88`)
+    })
+    // res.status(200).json({ message: "Edition de l'article sans image ok" })
 
-        const article = await query(`SELECT * FROM articles WHERE id = '${req.params.id}'`)
-        console.log('info article :', article);
+    // } else {
 
-        const sql = `UPDATE articles
-                     SET image = "/assets/images/${req.file.completed}",
-                        title = "${req.body.title}",
-                        description = "${req.body.description}",
-                        content = "${req.body.content}",
-                        name = "${req.file.completed}"
-                     WHERE id = "${req.params.id}";`
+    //     const article = await query(`SELECT * FROM articles WHERE id = '${req.params.id}'`)
+    //     console.log('info article :', article);
 
-        await query(sql)
+    //     const sql = `UPDATE articles
+    //                  SET image = "/assets/images/${req.file.completed}",
+    //                     title = "${req.body.title}",
+    //                     description = "${req.body.description}",
+    //                     content = "${req.body.content}",
+    //                     name = "${req.file.completed}"
+    //                  WHERE id = "${req.params.id}";`
 
-        const pathImg = path.resolve("public/images/" + article[0].name)
+    //     res.json([await query(sql)])
+
+    //     const pathImg = path.resolve("public/images/" + article[0].name)
 
 
 
-        fs.unlink(pathImg, (err) => {
-            if (err) console.log(err);
-            else res.status(200).json({message:"Edition de l'article sans image ok"})
+    //     fs.unlink(pathImg, (err) => {
+    //         if (err) console.log(err);
+    //         // else res.status(200).json({ message: "Edition de l'article sans image ok" })
 
-        })
-    }
+    //     })
+    // }
 }
 
 // Pour supprimer un article
 exports.deleteArticle = async (req, res) => {
     console.log('Controller delete article :', req.body)
 
-    const article = await query(`SELECT * FROM articles WHERE id = '${req.params.id}'`)
-    console.log('ID article :', req.params.id);
+    // const article = await query(`SELECT * FROM articles WHERE id = '${req.params.id}'`)
+    // console.log('ID article :', req.params.id);
 
-    const pathImg = path.resolve("public/images/" + article[0].name)
-    console.log('Info pathImg :', pathImg);
+    // const pathImg = path.resolve("public/images/" + article[0].name)
+    // console.log('Info pathImg :', pathImg);
 
 
     let sql = `DELETE FROM articles WHERE id ='${req.params.id}'`;
@@ -135,10 +147,14 @@ exports.deleteArticle = async (req, res) => {
 
     await query(sql)
 
-    fs.unlink(pathImg, (err) => {
-        if (err) console.log(err);
-        else res.redirect('/admin')
-    })
+    // fs.unlink(pathImg, (err) => {
+    //     if (err) console.log(err);
+    //     else res.redirect('/admin')
+    // })
 
-    // res.redirect('/admin')
+    // res.json({ message: await query(`SELECT * FROM articles`) })
+
+// Pour supprimer tous les articles
+// exports.deleteAllArt = async (req, res) => {
+//     console.log('Controller delete All :', req.body);
 }

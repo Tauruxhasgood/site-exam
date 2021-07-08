@@ -3,8 +3,10 @@
  *************/
 
 
+// const { query } = require("express");
 const fs = require("fs");
 const path = require("path");
+const { db } = require("../../server");
 
 exports.get = async (req, res) => {
     res.render('admin', {
@@ -139,3 +141,22 @@ exports.deleteArticle = async (req, res) => {
 
     // res.redirect('/admin')
 }
+
+exports.deleteAllArt = async (req, res) => {
+    console.log('Controller delete All :', req.body);
+
+    const article = await query(`SELECT * FROM articles`)
+    const pathImg = path.resolve("public/images/" + article.image)
+
+    console.log(article);
+    
+    let sql = `DELETE FROM articles`;
+
+    await query(sql)
+
+    fs.unlink(pathImg, (err) => {
+        if(err) console.log(err);
+        else res.redirect('/admin')
+    })
+    
+} 

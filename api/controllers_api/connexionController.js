@@ -66,9 +66,10 @@ exports.create = async (req, res) => {
                 next()
             }
         })
-        res.render('connexion', {
-            success: 'Votre compte à bien été créé merci de vérifier vos emails !'
-        })
+        res.status(200).json({message:"Création d'article ok"})
+        // res.render('connexion', {
+        //     success: 'Votre compte à bien été créé merci de vérifier vos emails !'
+        // })
         // console.log('Data Register: ', data, user[0])
         // res.render('connexion', {
         //     success: 'Votre compte à bien été créé !'
@@ -82,12 +83,12 @@ exports.login = async (req, res) => {
     let sql = `SELECT * FROM user WHERE email = ?`;
     let email = [req.body.email];
 
-    console.log('body login :', req.body.email)
+    // console.log('body login :', req.body.email)
 
     await query(sql, [email], (error, results) => {
         if (error) throw error;
         else {
-            console.log('Controller login: ', results)
+            // console.log('Controller login: ', results)
             if (results.length > 0) {
                 bcrypt.compare(req.body.password, results[0].password, (err, result) => {
                     if (result) {
