@@ -8,6 +8,7 @@
         "tu": "nodemon --exec 'mocha ./test/*.js --timeout 10000 -R min'",
         "chai": "nodemon --exec 'mocha ./test/chai*.js'",
         "mocha": "nodemon --exec 'mocha ./test/mocha*.js'",
+        "mocha_async": "nodemon --exec 'mocha ./test/async_mocha_starter.js'",
         "start": "node server.js",
         "dev": "nodemon server.js",
         "sass": "sass --watch ./public/css/sass/index.sass:./public/css/style.css",

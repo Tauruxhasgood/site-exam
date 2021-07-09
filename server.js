@@ -58,8 +58,7 @@ app.use(expressSession({
     // cookie: { maxAge : 30000}
 }));
 
-const { inc } = require('./api/helpers')
-const { limitArray } = require('./api/helpers')
+const { inc, limitArray } = require('./api/helpers')
 
 // Handlebars
 app.set('view engine', 'hbs');

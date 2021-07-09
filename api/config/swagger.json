@@ -309,7 +309,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["GET HOME"]
         }
       },
       "/api/v1/blog": {
@@ -320,7 +320,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["GET PAGE BLOG"]
         }
       },
       "/api/v1/article/{id}": {
@@ -337,7 +337,7 @@
             }
           ],
           "responses": {},
-          "tags": []
+          "tags": ["GET PAGE ARTCILE ID"]
         }
       },
       "/api/v1/contact": {
@@ -348,7 +348,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["GET PAGE CONTACT"]
         }
       },
       "/api/v1/admin": {
@@ -359,7 +359,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["GET PAGE ADMIN"]
         }
       },
       "/api/v1/deleteOne/{id}": {
@@ -376,7 +376,7 @@
             }
           ],
           "responses": {},
-          "tags": []
+          "tags": ["DELETE USER BY ID"]
         }
       },
       "/api/v1/editOne/{id}": {
@@ -393,7 +393,7 @@
             }
           ],
           "responses": {},
-          "tags": []
+          "tags": ["PUT USER BY ID"]
         }
       },
       "/api/v1/editArticle/{id}": {
@@ -410,7 +410,7 @@
             }
           ],
           "responses": {},
-          "tags": []
+          "tags": ["PUT ARTICLE BY ID"]
         }
       },
       "/api/v1/addArticle": {
@@ -421,7 +421,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["POST ARTICLE"]
         }
       },
       "/api/v1/deleteOneArt/{id}": {
@@ -438,7 +438,7 @@
             }
           ],
           "responses": {},
-          "tags": []
+          "tags": ["DELETE ARTICLE BY ID"]
         }
       },
       "/api/v1/user": {
@@ -449,7 +449,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["GET USER"]
         }
       },
       "/api/v1/connexion": {
@@ -460,7 +460,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["GET PAGE CONNEXION"]
         }
       },
       "/api/v1/logout": {
@@ -471,7 +471,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["GET LOGOUT"]
         }
       },
       "/api/v1/register": {
@@ -482,7 +482,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["POST REGISTER"]
         }
       },
       "/api/v1/login": {
@@ -493,7 +493,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["POST LOGIN"]
         }
       },
       "/api/v1/verification": {
@@ -504,7 +504,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["POST VERIF"]
         }
       },
       "/api/v1/verification/{id}": {
@@ -521,7 +521,7 @@
             }
           ],
           "responses": {},
-          "tags": []
+          "tags": ["GET VERIF ID"]
         },
         "post": {
           "summary": "/api/v1/verification/{id}",
@@ -536,7 +536,7 @@
             }
           ],
           "responses": {},
-          "tags": []
+          "tags": ["POST VERIF ID"]
         }
       },
       "/api/v1/editPassword/{id}": {
@@ -553,7 +553,7 @@
             }
           ],
           "responses": {},
-          "tags": []
+          "tags": ["GET EDIT PASSWORD"]
         },
         "post": {
           "summary": "/api/v1/editPassword/{id}",
@@ -568,7 +568,7 @@
             }
           ],
           "responses": {},
-          "tags": []
+          "tags": ["POST EDIT PASSWORD"]
         }
       },
       "/api/v1/feed": {
@@ -579,7 +579,7 @@
           ],
           "parameters": [],
           "responses": {},
-          "tags": []
+          "tags": ["GET PAGE FEED"]
         }
       }
     },
