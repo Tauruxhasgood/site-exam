@@ -108,7 +108,7 @@ exports.createArt = async (req, res) => {
     console.log('Controller add article :', req.body);
 
     let sql = `INSERT INTO articles (image, title, description, content, author_id, name) values(?)`;
-    let values = [`/assets/images/${req.file.completed}`, req.body.title, req.body.description, `${req.body.content}`, 1, `${req.file.originalname}`];
+    let values = [`/assets/images/${req.file.completed}`, req.body.title, req.body.description, `${req.body.content}`, 1, `${req.file.completed}`];
 
     console.log('Données ajouter :', req.file);
 
