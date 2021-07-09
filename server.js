@@ -13,7 +13,7 @@ const
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
     util = require('util'),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 3001;
 
 const Handlebars = require("handlebars");
 const MomentHandler = require("handlebars.moment");
