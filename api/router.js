@@ -11,7 +11,8 @@ const express = require('express'),
  *************/
 const homeController = require('./controllers/homeController'),
     blogController = require('./controllers/blogController'),
-    // blogIdController = require('./controllers/blogIdController'),
+    blogIdController = require('./controllers/blogIdController'),
+    commentsController = require('./controllers/commentsController'),
     contactController = require('./controllers/contactController'),
     adminController = require('./controllers/adminController'),
     userController = require('./controllers/userController'),
@@ -35,7 +36,7 @@ router.route('/')
     .get(homeController.get)
 
 
-// BLOG
+// BLOG / COMMENTS
 
 // - Articles
 router.route('/blog')
@@ -43,14 +44,18 @@ router.route('/blog')
 
 // - ArticleId
 router.route('/article/:id')
-    .get(blogController.pageBlogID)
+    .get(blogIdController.pageBlogID)
+
+// - Commentaires
+router.route('/addComments')
+    .post(commentsController.createComments)
 
 // CONTACT
 router.route('/contact')
     .get(contactController.get)
 
 // ADMIN
-// USER
+// - User
 router.route('/admin')
     .get(isAdmin, adminController.get)
 
@@ -60,7 +65,7 @@ router.route('/deleteOne/:id')
 router.route('/editOne/:id')
     .put(adminController.editOneUser)
 
-// ARTICLE
+// - Articles
 router.route('/editArticle/:id')
     .put(upload.single('imgArticle'), adminController.editArticle)
 
@@ -69,6 +74,10 @@ router.route('/addArticle')
 
 router.route('/deleteOneArt/:id')
     .delete(adminController.deleteArticle)
+
+// - Comments
+router.route('/deleteOneComments/:id')
+    .delete(adminController.deleteComments)
 
 // USER
 router.route('/user')
@@ -84,8 +93,6 @@ router.route('/logout')
 // - S'enregistrer
 router.route('/register')
     .post(connexionController.create)
-
-
 
 // - Se connecter
 router.route('/login')
@@ -109,6 +116,8 @@ router.route('/verification/:id')
 router.route('/editPassword/:id')
     .get(nodemailerController.verifMail)
     .post(nodemailerController.updatePassword)
+
+
 
 // FEED
 router.route('/feed')

@@ -11,7 +11,6 @@
       <th scope="col">id</th>
       <th scope="col">Nom</th>
       <th scope="col">Email</th>
-      <th scope="col">Status</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -22,17 +21,11 @@
 
       <tr>
         {{! inc permet d'incrémenter l'id, si l'on supprime un utilisateurs,
-         les id vont automatiquement se réattribuer dans l'ordre. Ne touche pas au ID de la db }}
+         les id vont automatiquement se réattribuer dans l'ordre. Ne touche pas au ID de l'user de la db }}
         <th scope="row"> {{inc @index}} : {{ this.id }} </th>
         <td>{{ this.name }}</td>
         <td>{{ this.email }}</td>
-        <td>
-          {{!-- <select class="form-select" aria-label="Default select example">
-            <option value="1">Verified</option>
-            <option value="2">Banned</option>
-            <option value="3">User</option>
-          </select> --}}
-        </td>
+        
         <td class="d-flex justify-content-center">
           <button
             type="button"

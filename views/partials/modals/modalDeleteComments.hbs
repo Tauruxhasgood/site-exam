@@ -1,0 +1,44 @@
+<td>
+  {{! MODAL DE SUPPRESSION DE COMMENTAIRE/AVIS }}
+  <div class="d-flex justify-content-end">
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="deleteComments"
+      tabindex="-1"
+      aria-labelledby="deleteCommentsLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteCommentsLabel">Suppression
+              commentaire/avis</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-dark">
+            Êtes vous sur de vouloir supprimer cet Avis/Commentaire ?
+          </div>
+          <div class="modal-footer">
+            <form action="/deleteOneComments/{{ this.id }}?_method=DELETE" method="post">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+              >Non</button>
+              <button type="submit" class="btn btn-danger">Oui</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</td>

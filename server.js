@@ -46,7 +46,7 @@ app.use(expressSession({
     name: 'petiGato',
     saveUninitialized: true,
     resave: false,
-    // cookie: { maxAge : 30000}
+    cookie: { maxAge : 99999999}
 }));
 
 const { inc } = require('./api/helpers')

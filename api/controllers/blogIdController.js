@@ -1,48 +1,35 @@
 /*
  * Controller
- *************/ 
+ *************/
 
 
-// module.exports = {
-//     get: (req, res) => {
-//         res.render('blogId')
-//     }
-// }
+ 
 
-// if (!req.file) {
+exports.pageBlogID = async (req, res) => {
 
-//     // condition pour verifier que nous avons un title dans le formulaire
-//     if (req.body.title) {
-//       // Ici nous éditons le titre de notre Article selectionner grace à query
-//       Article.updateOne( query, {
-//         title: req.body.title
-//       // et notre callback d'error
-//       }, (err) => {
-//         if (err) res.redirect('/')
-//         else res.redirect('/article')
-//       })
-//     } else res.redirect('/')
+    if (!req.session.user) {
+        res.render('blog', {
+            error: 'Vous devez être connecté pour accéder aux détails du voyage'
+        })
+    } else {
+        let artIDD = await query(`SELECT * FROM articles WHERE id = "${req.params.id}"`)
+        console.log('Info de artIDD :', artIDD);
+        let artID = artIDD[0]
+        // je créer une boucle pour extraire l'objet ayant l'ID passer en paramètre de l'URL
+        // await simulate.forEach(art => { if (art.id === req.params.id) artID = art })
 
-//   // Sinon (Donc si nous avonc un fichier (image) dans notre formulaire)
-//   } else {
-//     // Ici nous éditons notre article selectionner grâce à query
-//     Article.updateOne( query, {
-//       // on récupère tout notre req.body
-//       ...req.body,
-//       // ici on viens stocker le chemin de l'image dans la DB
-//       imgArticle: `/assets/images/${req.file.completed}`,
-//       // Ici on stock le nom de l'image dans notre DB
-//       name: req.file.completed
-//     // Notre callback d'error
-//     }, (err) => {
-//       if (err) console.log(err)
+        // var text = '<h2>coucou</h2><p>zfeferfrefef</p><p>fzfreregreg</p>'
+        res.render('blogId', {
+            // text,
+            artID
+        })
+    }
+}
 
-//       // Si notre callback nous donne pas d'erreur alors note fonction de suppression de l'image de lance avec un callback d'err
-//       fs.unlink( pathImg, (err) => {
-//         if (err) console.log(err)
-//         //  Ici notre ancienne image viens d'etre supprimer
-//         else res.redirect('/article')
+exports.pageBlogIdComments = async (req, res) => {
+    const dbComments = await query(`SELECT * FROM comments`)
 
-//       })
-//     })
-//   }
+    res.render('blogId', {
+        dbComments
+    })
+}

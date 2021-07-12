@@ -12,7 +12,8 @@ exports.get = async (req, res) => {
         layout: 'adminLayout',
         // listUser qui est récupéré dans la boucle #each du partial admin > tableUsers.hbs
         listUser: await query('SELECT * FROM user'),
-        listArticle: await query(`SELECT * FROM articles`)
+        listArticle: await query(`SELECT * FROM articles`),
+        listComments: await query(`SELECT * FROM comments`)
     })
 }
 
@@ -58,12 +59,9 @@ exports.editOneUser = async (req, res) => {
 
 // CONTROLLER POUR GERER LES ARTICLES
 
-// Pour éditer un article
+// - Pour éditer un article
 exports.editArticle = async (req, res) => {
     console.log('Controller Edit article :', req.body)
-
-
-
 
     if (!req.file) {
         const sql = `UPDATE articles
@@ -94,8 +92,6 @@ exports.editArticle = async (req, res) => {
 
         const pathImg = path.resolve("public/images/" + article[0].name)
 
-
-
         fs.unlink(pathImg, (err) => {
             if (err) console.log(err);
             else res.redirect('/admin')
@@ -103,7 +99,7 @@ exports.editArticle = async (req, res) => {
     }
 }
 
-// Pour créer un article
+// - Pour créer un article
 exports.createArt = async (req, res) => {
     console.log('Controller add article :', req.body);
 
@@ -116,7 +112,7 @@ exports.createArt = async (req, res) => {
     res.redirect('/admin')
 }
 
-// Pour supprimer un article
+// - Pour supprimer un article
 exports.deleteArticle = async (req, res) => {
     console.log('Controller delete article :', req.body)
 
@@ -139,3 +135,18 @@ exports.deleteArticle = async (req, res) => {
 
     // res.redirect('/admin')
 }
+
+// CONTROLLER POUR GERER LES COMMENTAIRES
+
+// - Pour supprimer un commentaires
+exports.deleteComments = async (req, res) => {
+    console.log('Données de suppresion :', req.body);
+
+    let sql = `DELETE FROM comments WHERE id ='${req.params.id}'`;
+
+    await query(sql)
+    res.redirect('/admin#comments') 
+}
+
+
+

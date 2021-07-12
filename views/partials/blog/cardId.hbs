@@ -86,7 +86,8 @@
       <div class="container">
         <div class="row">
           {{! IMAGE DE LA PERSONNE QUI A COMMENTER }}
-          <div
+          {{#each dbComments }}
+          {{!-- <div
             class="col-md-2 d-flex justify-content-center align-items-center"
           >
             <img
@@ -95,24 +96,15 @@
               src="/assets/images/avatar.png"
               alt=""
             />
-          </div>
+          </div> --}}
 
           {{! COMMENTAIRE DE LA PERSONNE }}
+          
           <div class="card-body col-md-10">
 
-            <p class="card-text">Commentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personneCommentaire de la
-              personneCommentaire de la personne</p>
+            <p class="card-text">{{ content }}</p>
           </div>
+          {{/each}}
         </div>
       </div>
 
@@ -120,7 +112,7 @@
   </div>
 
   {{! FORMULAIRE COMMENTAIRE }}
-  <form class="pt-3">
+  <form action="/addComments" method="post" class="pt-3">
     <div class="container">
 
       {{! TITRE COMMENTAIRE }}
@@ -130,20 +122,8 @@
 
       </div>
 
-      {{! CHAMP COMMENTAIRE }}
-      <div class="form-floating mb-3 pt-5">
-        <textarea
-          required
-          class="form-control"
-          placeholder="Leave a comment here"
-          id="floatingTextarea"
-          style="height: 200px"
-        ></textarea>
-        <label for="floatingTextarea2">Commentaire</label>
-      </div>
-
-      {{! NOM COMMENTAIRE }}
-      <div class="row pt-1">
+      {{! TITRE DU COMMENTAIRE }}
+      <div class="row pt-5">
 
         <div class="form-floating pb-3 col-md-12">
 
@@ -153,6 +133,38 @@
             class="form-control"
             id="floatingInput"
             placeholder="Nom et Prénom"
+            name="title"
+          />
+          <label class="ms-4" for="floatingText">Titre</label>
+        </div>
+
+      </div>
+
+      {{! CHAMP COMMENTAIRE }}
+      <div class="form-floating pb-3">
+        <textarea
+          required
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea"
+          style="height: 200px"
+          name="content"
+        ></textarea>
+        <label for="floatingTextarea2">Commentaire</label>
+      </div>
+
+      {{! NOM COMMENTAIRE }}
+      <div class="row">
+
+        <div class="form-floating pb-3 col-md-12">
+
+          <input
+            required
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Nom et Prénom"
+            name="name"
           />
           <label class="ms-4" for="floatingText">Prénom</label>
         </div>

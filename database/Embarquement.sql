@@ -49,10 +49,10 @@ CREATE TABLE IF NOT EXISTS `Embarquement`.`articles` (
   `content` TEXT NOT NULL,
   `image` VARCHAR(255) NOT NULL,
   `description` VARCHAR(255) NOT NULL,
-  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `author_id` INT NOT NULL,
-  `edited_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `name` VARCHAR(255),
+  `edited_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `name` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_articles_user1_idx` (`author_id` ASC) VISIBLE,
   CONSTRAINT `fk_articles_user1`
@@ -67,10 +67,12 @@ ENGINE = InnoDB;
 -- Table `Embarquement`.`comments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Embarquement`.`comments` (
-  `content` VARCHAR(255) NOT NULL,
-  `creation_date` DATE NOT NULL,
+  `content` TEXT NOT NULL,
+  `creation_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `author_id` INT NOT NULL,
   `ref_id` INT NOT NULL,
+  `edited_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `title` VARCHAR(255) NOT NULL,
   -- INDEX `fk_comments_articles1_idx` (`ref_id` ASC) VISIBLE,
   INDEX `fk_comments_user1_idx` (`author_id` ASC) VISIBLE,
   -- CONSTRAINT `fk_comments_articles1`
