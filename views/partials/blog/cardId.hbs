@@ -31,11 +31,14 @@
   <hr size="4" width="60%" align="center" />
 
   {{! DIV POUR ACCUEILLIR LES COMMENTAIRES }}
-  <div class="container pt-5">
+  {{#each dbComments}}
+  <div class="container pt-2">
     <div class="card">
       <div class="card-header d-flex justify-content-between">
+        <p>{{ this.creation_date }}</p>
+        <p>{{ this.name }}</p>
 
-        date commentaire/nom de la personne
+        {{!-- date commentaire/nom de la personne --}}
         <button
           type="button"
           class="btn btn-close"
@@ -86,7 +89,7 @@
       <div class="container">
         <div class="row">
           {{! IMAGE DE LA PERSONNE QUI A COMMENTER }}
-          {{#each dbComments }}
+          {{!-- {{#each dbComments }} --}}
           {{!-- <div
             class="col-md-2 d-flex justify-content-center align-items-center"
           >
@@ -102,17 +105,18 @@
           
           <div class="card-body col-md-10">
 
-            <p class="card-text">{{ content }}</p>
+            <p class="card-text">{{ this.content }}</p>
           </div>
-          {{/each}}
+          {{!-- {{/each}} --}}
         </div>
       </div>
 
     </div>
   </div>
+  {{/each}}
 
   {{! FORMULAIRE COMMENTAIRE }}
-  <form action="/addComments" method="post" class="pt-3">
+  <form action="/article/{{ artID.id }}" method="post" class="pt-3">
     <div class="container">
 
       {{! TITRE COMMENTAIRE }}
@@ -160,13 +164,14 @@
 
           <input
             required
-            type="text"
+            type="hidden"
             class="form-control"
             id="floatingInput"
-            placeholder="Nom et Prénom"
+            placeholder="Name"
             name="name"
+            value="{{ user.id }}"
           />
-          <label class="ms-4" for="floatingText">Prénom</label>
+          <label class="ms-4" for="floatingText"></label>
         </div>
 
       </div>

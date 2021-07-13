@@ -1,7 +1,7 @@
 /*
  * Module
  * ****** */
-const simulate = require('../simulate.json')
+// const simulate = require('../simulate.json')
 
 /*
  * Controller

@@ -97,7 +97,8 @@ exports.login = async (req, res) => {
                             isAdmin: results[0].isAdmin,
                             isVerified: results[0].isVerified,
                             isBann: results[0].isBann,
-                            avatar: results[0].avatar
+                            avatar: results[0].avatar,
+                            id: results[0].id
                         }
                         console.log('conn: ', req.session)
                         res.locals.user = req.session.user

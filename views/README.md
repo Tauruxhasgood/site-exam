@@ -1,0 +1,1 @@
+> sur article/id si cela ne fonctionne plus vérifier qu'il n'y ai pas la const express en haut de document

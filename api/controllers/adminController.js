@@ -148,5 +148,10 @@ exports.deleteComments = async (req, res) => {
     res.redirect('/admin#comments') 
 }
 
+// - Pour supprimer tous les commentaires
+exports.deleteAllComments = async (req, res) => {
+    console.log('Données de suppresion :', req.body);
+}
+
 
 

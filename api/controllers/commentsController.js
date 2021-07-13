@@ -2,14 +2,20 @@
 
 exports.createComments = async (req, res) => {
     console.log(req.body);
-    
-    let sql = `INSERT INTO comments (content, author_id, title, name) VALUES (?)`;
-    let values = [req.body.content, 1, req.body.title, req.body.name];
 
-    console.log('Données user.id :', req.session.user.id);
+    // const articleID = await query(`SELECT * FROM articles WHERE id = '${req.params.id}'`)
+    
+    let sql = `INSERT INTO comments (content, author_id, title, name, article_id) VALUES (?)`;
+    let values = [req.body.content, req.session.user.id, req.body.title, req.body.name, req.params.id];
+
+    console.log('Données values :', values);
 
     await query(sql, [values])
-    res.redirect('/article/${req.body.blogId}')
+
+    // let articleParentComment = `SELECT * FROM comments WHERE id = '${req.params.id}';`
+
+    res.redirect(`/blog`)
+    console.log('info res rdirect :', req.params.id);
 }
 
 

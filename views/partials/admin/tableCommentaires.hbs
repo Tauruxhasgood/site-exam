@@ -13,8 +13,10 @@
             <th scope="col">Nom</th>
             {{!-- <th scope="col">Commentaires</th> --}}
             <th scope="col">Contenu</th>
+            <th scope="col">Auteur</th>
             
             <th scope="col">Supprimer</th>
+            <th scope="col">Sélection</th>
         </tr>
     </thead>
     {{!-- CONTENU DU TABLEAU --}}
@@ -26,14 +28,26 @@
             <td>{{ this.name }}</td>
             {{!-- <td>{{ this.is_Avis }}</td> --}}
             <td>{{ this.content }}</td>
+            <td>{{ this.author_id }}</td>
             
             <td>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteComments">
                     Supprimer
                 </button>
             </td>
+            <td>
+                <div class="form-check form-switch" value="false">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                </div>
+            </td>
+            
             {{> modals/modalDeleteComments comments=this}}
         </tr>
+        
         {{/each}}
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Appliquer</button>
+        </div>
     </tbody>
 </table>

@@ -37,6 +37,7 @@ router.route('/')
 
 
 // BLOG / COMMENTS
+// --------------------
 
 // - Articles
 router.route('/blog')
@@ -45,45 +46,50 @@ router.route('/blog')
 // - ArticleId
 router.route('/article/:id')
     .get(blogIdController.pageBlogID)
-
-// - Commentaires
-router.route('/addComments')
     .post(commentsController.createComments)
 
+
 // CONTACT
+// --------------------
 router.route('/contact')
     .get(contactController.get)
 
 // ADMIN
+// --------------------
 // - User
 router.route('/admin')
     .get(isAdmin, adminController.get)
 
 router.route('/deleteOne/:id')
-    .delete(adminController.deleteOneUser)
+    .delete(isAdmin, adminController.deleteOneUser)
 
 router.route('/editOne/:id')
-    .put(adminController.editOneUser)
+    .put(isAdmin, adminController.editOneUser)
 
 // - Articles
 router.route('/editArticle/:id')
-    .put(upload.single('imgArticle'), adminController.editArticle)
+    .put(isAdmin, upload.single('imgArticle'), adminController.editArticle)
 
 router.route('/addArticle')
-    .post(upload.single('imgArticle'), adminController.createArt)
+    .post(isAdmin, upload.single('imgArticle'), adminController.createArt)
 
 router.route('/deleteOneArt/:id')
-    .delete(adminController.deleteArticle)
+    .delete(isAdmin, adminController.deleteArticle)
 
 // - Comments
 router.route('/deleteOneComments/:id')
-    .delete(adminController.deleteComments)
+    .delete(isAdmin, adminController.deleteComments)
+
+router.route('/deleteAllComments')
+    .delete(isAdmin, adminController.deleteAllComments)
 
 // USER
+// --------------------
 router.route('/user')
     .get(userController.get)
 
 //CONNEXION
+// --------------------
 router.route('/connexion')
     .get(connexionController.get)
 
@@ -99,6 +105,7 @@ router.route('/login')
     .post(connexionController.login)
 
 // NODEMAILER
+// --------------------
 // email TEST
 
 // router.route('/nodemailerTest')
@@ -120,6 +127,7 @@ router.route('/editPassword/:id')
 
 
 // FEED
+// --------------------
 router.route('/feed')
     .get(feedController.get)
 /***********

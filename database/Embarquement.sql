@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `Embarquement`.`comments` (
   `ref_id` INT NOT NULL,
   `edited_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `title` VARCHAR(255) NOT NULL,
+  `article_id` INT
   -- INDEX `fk_comments_articles1_idx` (`ref_id` ASC) VISIBLE,
   INDEX `fk_comments_user1_idx` (`author_id` ASC) VISIBLE,
   -- CONSTRAINT `fk_comments_articles1`
