@@ -149,9 +149,10 @@ exports.deleteComments = async (req, res) => {
 }
 
 // - Pour supprimer tous les commentaires
-exports.deleteAllComments = async (req, res) => {
+exports.deleteMultiComments = async (req, res) => {
     console.log('Données de suppresion :', req.body);
-}
 
+    var data
+}
 
 

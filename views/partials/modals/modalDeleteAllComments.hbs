@@ -1,0 +1,36 @@
+
+<div
+    class="modal fade"
+    id="deleteAllComments"
+    tabindex="-1"
+    aria-labelledby="deleteAllCommentsLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteAllCommentsLable">Êtes vous sûr de
+            vouloir supprimer tous les commentaires ?</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body text-dark">
+          Suppression de tous les commentaires
+        </div>
+        <div class="modal-footer">
+          <form action="/deleteMultiComments?_method=DELETE" method="post">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >Annuler</button>
+            <button type="submit" class="btn btn-success">Appliquer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

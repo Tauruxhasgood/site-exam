@@ -80,8 +80,8 @@ router.route('/deleteOneArt/:id')
 router.route('/deleteOneComments/:id')
     .delete(isAdmin, adminController.deleteComments)
 
-router.route('/deleteAllComments')
-    .delete(isAdmin, adminController.deleteAllComments)
+router.route('/deleteMultiComments')
+    .delete(isAdmin, adminController.deleteMultiComments)
 
 // USER
 // --------------------

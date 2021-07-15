@@ -1,10 +1,10 @@
-{{!-- 
-     ROUTE : /ADMIN
-     PARTIAL AVIS ET COMMENTAIRES
- --}}
+{{!--
+ROUTE : /ADMIN
+PARTIAL AVIS ET COMMENTAIRES
+--}}
 
 {{!-- PARTIAL AVIS ET COMMENTAIRES ADMIN --}}
-<table class="table">
+<table class="table" id="dataTable" rules="all">
     {{!-- LEGENDE TABLEAU --}}
     <thead>
         <tr>
@@ -14,7 +14,7 @@
             {{!-- <th scope="col">Commentaires</th> --}}
             <th scope="col">Contenu</th>
             <th scope="col">Auteur</th>
-            
+
             <th scope="col">Supprimer</th>
             <th scope="col">Sélection</th>
         </tr>
@@ -29,25 +29,58 @@
             {{!-- <td>{{ this.is_Avis }}</td> --}}
             <td>{{ this.content }}</td>
             <td>{{ this.author_id }}</td>
-            
+
             <td>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteComments">
                     Supprimer
                 </button>
             </td>
             <td>
-                <div class="form-check form-switch" value="false">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                <div class="form-check form-switch">
+                    {{!-- <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"
+                        onchange="checkAll ('dataTable')" name="chk[]">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label> --}}
+                    <input type="checkbox" name="chkbox[]" value="{{ this.id }}">
                 </div>
-            </td>
-            
+                </td>
+
             {{> modals/modalDeleteComments comments=this}}
         </tr>
-        
+
         {{/each}}
         <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Appliquer</button>
+            {{!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                data-bs-target="#deleteAllComments">Appliquer</button> --}}
+            <input type="button" value="Delete Row" onclick="deleteRow ('dataTable')" />
         </div>
+        {{> modals/modalDeleteAllComments comments=this}}
     </tbody>
 </table>
+
+<script>
+
+    function deleteRow(tableID) {
+        var table = document.getElementById(tableID);
+        let arrayID = []
+        console.log('table: ', table)
+        for (var i = 1; i < table.rows.length; i++) {
+            var row = table.rows[i];
+            var chkbox = row.cells[6].children[0];
+            console.log('Test: ', chkbox.children[0].value)
+            arrayID.push(chkbox.children[0].value)
+            if (chkbox && chkbox.checked) table.deleteRow(i--);
+        }
+        console.log("Array: ", arrayID)
+        if (table.rows.length == 1) table.rows[0].cells[0].children[0].checked = false;
+
+        
+        var data = JSON.stringify(arrayID);
+        console.log('info envoyés :', data)
+    }
+
+    function sendForm(data) {
+        console.log('Send :', data)
+    }
+
+    
+</script>

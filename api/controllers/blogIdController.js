@@ -2,13 +2,6 @@
  * Controller
  *************/
 
-
-
-
-
-
- 
-
 exports.pageBlogID = async (req, res) => {
 
     if (!req.session.user) {
