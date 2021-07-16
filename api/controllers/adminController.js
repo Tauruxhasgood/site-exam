@@ -13,7 +13,8 @@ exports.get = async (req, res) => {
         // listUser qui est récupéré dans la boucle #each du partial admin > tableUsers.hbs
         listUser: await query('SELECT * FROM user'),
         listArticle: await query(`SELECT * FROM articles`),
-        listComments: await query(`SELECT * FROM comments`)
+        listComments: await query(`SELECT * FROM comments`),
+        defaultActived: true
     })
 }
 
@@ -145,14 +146,35 @@ exports.deleteComments = async (req, res) => {
     let sql = `DELETE FROM comments WHERE id ='${req.params.id}'`;
 
     await query(sql)
-    res.redirect('/admin#comments') 
+    res.redirect('/admin#comments')
 }
 
 // - Pour supprimer tous les commentaires
 exports.deleteMultiComments = async (req, res) => {
-    console.log('Données de suppresion :', req.body);
+    console.log('Données de suppresion :', typeof req.body, req.body);
 
-    var data
+    // console.log('length: ', req.body['data[]'].length)
+
+    req.body['data[]'].forEach(async id => {
+        console.log('loop: ', id)
+        let sql = `DELETE FROM comments WHERE id = '${id}'`;
+        await query(sql)
+    });
+
+    // for (const [key, value] of Object.entries(req.body['data[]'])) {
+    //     console.log(`ObjectEntries: ${key}: ${value}`);
+    // }
+
+    res.render('admin', {
+        // Quand nous utilisons un layout qui n'est pas celui par default nous devons le spécifié
+        layout: 'adminLayout',
+        // listUser qui est récupéré dans la boucle #each du partial admin > tableUsers.hbs
+        listUser: await query('SELECT * FROM user'),
+        listArticle: await query(`SELECT * FROM articles`),
+        listComments: await query(`SELECT * FROM comments`),
+        commentActived: true
+    })
+
 }
 
 

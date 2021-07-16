@@ -81,7 +81,7 @@ router.route('/deleteOneComments/:id')
     .delete(isAdmin, adminController.deleteComments)
 
 router.route('/deleteMultiComments')
-    .delete(isAdmin, adminController.deleteMultiComments)
+    .post(adminController.deleteMultiComments)
 
 // USER
 // --------------------

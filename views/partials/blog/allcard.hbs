@@ -12,33 +12,54 @@
         {{!-- BARRE DE RECHERCHE --}}
         <div class="row justify-content-md-center pt-5 pb-5">
             <form class="d-flex col-md-6">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input id="mySearch" onkeyup="myFunction()" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                {{!-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
             </form>
         </div>
 
         {{!-- ALL CARD --}}
-        <div class="row">
+        <div class="row" id="myCard">
             {{!-- dbArticle définit dans blogController (sélection de tous les articles) --}}
             {{#each dbArticle }}
 
-            <div class="col-md-4 pb-2">
-                <div class="card" style="width: auto;">
-                    <img src="{{ image }}" style="height:250px;" class="card-img-top"
-                        alt="australie">
-                    <div class="card-body text-center">
-                        <h2 class="card-title text-center mb-4">{{ title }}</h2>
-                        <p class="card-text"> {{ description }}</p>
-                        <p class="card-text"> {{ author }} </p>
-                        <a href="/article/{{ id }}" class="btn btn-danger" onclick="checkId"
-                        >Plus d'informations</a>
+            <div class="col-md-4 pb-2" >
+                <div class="card" style="width: auto;" >
+                        <img src="{{ image }}" style="height:250px;" class="card-img-top"
+                            alt="australie" id="myImg">
+                        <div class="card-body text-center">
+                            <h2 class="card-title text-center mb-4">{{ title }}</h2>
+                            <p class="card-text"> {{ description }}</p>
+                            <p class="card-text pb-2"> {{ author }} </p>
+                            <a href="/article/{{ id }}" class="btn btn-danger" onclick="checkId"
+                            >Plus d'informations (faire de la veille sur les boucle for et while)</a>
+                        </div>
                     </div>
-                </div>
             </div>
-
             {{/each}}
-
-            
         </div>
     </div>
 </section>
+
+<script>
+    function myFunction() {
+        var input, filter, div1, div2, h2, i, txtValue;
+        input = document.getElementById('mySearch');
+        filter = input.value.toUpperCase();
+        div1 = document.getElementById("myCard");
+        div2 = div1.getElementsByTagName('div');
+
+        for (i = 0; i < div2.length; i++) {
+            h2 = div2[i].getElementsByTagName("h2")[0];
+
+            console.log('INFO DE H2 :', h2)
+            txtValue = h2.textContent || h2.innerText;
+
+            console.log('INFO DE TXTVALUE :', txtValue)
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                div2[i].style.display = "";
+            } else {
+                div2[i].style.display = "none";
+            }
+        }
+    }
+</script>

@@ -58,8 +58,7 @@ app.use(expressSession({
     cookie: { maxAge: 99999999 }
 }));
 
-const { inc } = require('./api/helpers')
-const { limitArray } = require('./api/helpers')
+const { inc, limitArray } = require('./api/helpers')
 
 // Handlebars
 app.set('view engine', 'hbs');
@@ -89,7 +88,7 @@ app.use('*', (req, res, next) => {
 
     if (req.session.isAdmin === true) res.locals.admin = req.session.isAdmin
 
-    console.log('res.locals: ', req.session)
+    // console.log('res.locals: ', req.session)
     next()
 })
 

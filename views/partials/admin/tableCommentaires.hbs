@@ -42,45 +42,75 @@ PARTIAL AVIS ET COMMENTAIRES
                     <label class="form-check-label" for="flexSwitchCheckDefault"></label> --}}
                     <input type="checkbox" name="chkbox[]" value="{{ this.id }}">
                 </div>
-                </td>
+            </td>
 
             {{> modals/modalDeleteComments comments=this}}
         </tr>
 
         {{/each}}
-        <div class="modal-footer">
-            {{!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                data-bs-target="#deleteAllComments">Appliquer</button> --}}
-            <input type="button" value="Delete Row" onclick="deleteRow ('dataTable')" />
-        </div>
-        {{> modals/modalDeleteAllComments comments=this}}
+        <form action="/deleteMultiComments?_method=DELETE" method="post">
+            <div class="modal-footer">
+                {{!-- <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                    data-bs-target="#deleteMultiComments">Appliquer</button> --}}
+                <input type="button" class="btn btn-success" value="Supprimer les commentaires"
+                    onclick="deleteRow ('dataTable')" />
+            </div>
+        </form>
+        {{!-- {{> modals/modalDeleteAllComments comments=this}} --}}
     </tbody>
 </table>
 
-<script>
+{{!-- {{#if commentsActived }} --}}
+{{!-- <script> --}}
+   // document.getElementById('comments').classList.add('active')
+{{!-- </script> --}}
+{{!-- {{/if }} --}}
 
+
+
+<script>
     function deleteRow(tableID) {
+        /* on récupère par l'id notre table contenant les commentaires*/
         var table = document.getElementById(tableID);
+        /* on récupère nos id sous forme de tableau*/
         let arrayID = []
-        console.log('table: ', table)
+        console.log('table: ', table, arrayID)
         for (var i = 1; i < table.rows.length; i++) {
             var row = table.rows[i];
             var chkbox = row.cells[6].children[0];
             console.log('Test: ', chkbox.children[0].value)
-            arrayID.push(chkbox.children[0].value)
-            if (chkbox && chkbox.checked) table.deleteRow(i--);
+            if (chkbox.children[0] && chkbox.children[0].checked) {
+                // table.deleteRow(i--);
+                arrayID.push(chkbox.children[0].value);
+            }
         }
-        console.log("Array: ", arrayID)
+        sendForm(arrayID) // <--- function ajax
         if (table.rows.length == 1) table.rows[0].cells[0].children[0].checked = false;
-
-        
-        var data = JSON.stringify(arrayID);
-        console.log('info envoyés :', data)
+        console.log('info sendForm :', arrayID)
     }
 
     function sendForm(data) {
         console.log('Send :', data)
-    }
+        const body = { data }
 
-    
+        console.log('BUDY: ', body)
+        console.log('BUDY: ', body.data.length)
+
+        if (body.data.length <= 1) {
+            alert('Vous devez selectionner minimum 2 checkbox !')
+        } else {
+            $.ajax({
+                url: "/deleteMultiComments",
+                type: "POST",
+                async: true,
+                cache: false,
+                data: { data },
+                success: function (data) {
+                    alert(data)
+                    // console.log('info de data :', data)
+                    // document.location.reload();
+                }
+            });
+        }
+    }
 </script>
