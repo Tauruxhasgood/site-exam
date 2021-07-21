@@ -23,7 +23,7 @@
         {{!-- listArticle qui est déclaré dans le GET de adminController --}}
         {{#each listArticle}}
             <tr>
-                <th scope="row">{{ this.id }}</th>
+                <th scope="row">{{inc @index}} : {{ this.id }}</th>
                 <td>{{ this.author_id }}</td>
                 <td>{{ this.title }}</td>
                 <td>{{ this.description }}</td>

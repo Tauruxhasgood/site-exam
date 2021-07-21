@@ -23,7 +23,7 @@ PARTIAL AVIS ET COMMENTAIRES
     <tbody>
         {{#each listComments}}
         <tr>
-            <th scope="row">{{ this.id }}</th>
+            <th scope="row">{{inc @index}} : {{ this.id }}</th>
             <td>{{ this.title }}</td>
             <td>{{ this.name }}</td>
             {{!-- <td>{{ this.is_Avis }}</td> --}}
