@@ -4044,9 +4044,9 @@ textarea.form-control-lg {
   cursor: default;
 }
 
-.nav-tabs {
+/* .nav-tabs {
   border-bottom: 1px solid #dee2e6;
-}
+} */
 .nav-tabs .nav-link {
   margin-bottom: -1px;
   background: none;
@@ -5506,7 +5506,7 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 1px solid #dee2e6;
+  /* border-top: 1px solid #dee2e6; */
   border-bottom-right-radius: calc(0.3rem - 1px);
   border-bottom-left-radius: calc(0.3rem - 1px);
 }

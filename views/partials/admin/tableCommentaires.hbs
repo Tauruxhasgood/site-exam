@@ -8,7 +8,7 @@ PARTIAL AVIS ET COMMENTAIRES
     {{!-- LEGENDE TABLEAU --}}
     <thead>
         <tr>
-            <th scope="col">#id</th>
+            <th scope="col">id</th>
             <th scope="col">Titre</th>
             <th scope="col">Nom</th>
             {{!-- <th scope="col">Commentaires</th> --}}
@@ -31,7 +31,7 @@ PARTIAL AVIS ET COMMENTAIRES
             <td>{{ this.author_id }}</td>
 
             <td>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteComments">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteComments{{ this.id }}">
                     Supprimer
                 </button>
             </td>
@@ -60,11 +60,7 @@ PARTIAL AVIS ET COMMENTAIRES
     </tbody>
 </table>
 
-{{!-- {{#if commentsActived }} --}}
-{{!-- <script> --}}
-   //document.getElementById('comments').classList.add('active'
-{{!-- </script> --}}
-{{!-- {{/if }} --}}
+
 
 
 
@@ -106,7 +102,7 @@ PARTIAL AVIS ET COMMENTAIRES
                 cache: false,
                 data: { data },
                 success: function (data) {
-                    alert(data)
+                    window.location.reload()
                     // console.log('info de data :', data)
                     // document.location.reload();
                 }

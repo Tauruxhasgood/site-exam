@@ -125,8 +125,7 @@ exports.deleteArticle = async (req, res) => {
 
 
     let sql = `DELETE FROM articles WHERE id ='${req.params.id}'`;
-    // let id = [req.params.id];
-
+    
     await query(sql)
 
     fs.unlink(pathImg, (err) => {
@@ -141,13 +140,14 @@ exports.deleteArticle = async (req, res) => {
 
 // - Pour supprimer un commentaires
 exports.deleteComments = async (req, res) => {
-    console.log('Données de suppresion :', req.body);
+    
 
-    let sql = `DELETE FROM comments WHERE id ='${req.params.id}'`;
-
-    await query(sql)
-    res.redirect('/admin#comments')
+    let sql = `DELETE FROM comments WHERE id = ?`;
+    let id = [req.params.id];
+    await query(sql, [id])
+    res.redirect('/admin')
 }
+
 
 // - Pour supprimer tous les commentaires
 exports.deleteMultiComments = async (req, res) => {
@@ -155,11 +155,7 @@ exports.deleteMultiComments = async (req, res) => {
 
     // console.log('length: ', req.body['data[]'].length)
 
-    req.body['data[]'].forEach(async id => {
-        console.log('loop: ', id)
-        let sql = `DELETE FROM comments WHERE id = '${id}'`;
-        await query(sql)
-    });
+    req.body['data[]'].forEach(async id => await query(`DELETE FROM comments WHERE id = '${id}'`));
 
     // for (const [key, value] of Object.entries(req.body['data[]'])) {
     //     console.log(`ObjectEntries: ${key}: ${value}`);

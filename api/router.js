@@ -18,7 +18,8 @@ const homeController = require('./controllers/homeController'),
     userController = require('./controllers/userController'),
     connexionController = require('./controllers/connexionController'),
     feedController = require('./controllers/rssController'),
-    nodemailerController = require('./controllers/nodemailerController');
+    nodemailerController = require('./controllers/nodemailerController'),
+    mentionController = require('./controllers/mentionController');
 
 /*
  * Middleware
@@ -130,6 +131,11 @@ router.route('/editPassword/:id')
 // --------------------
 router.route('/feed')
     .get(feedController.get)
+
+// MENTION LEGALE
+router.route('/mention')
+    .get(mentionController.get)
+
 /***********
  * / Router
  */

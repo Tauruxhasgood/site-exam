@@ -15,3 +15,6 @@ sass --watch ./public/css/sass/index.sass:./public/css/style.css
 
 ==> Mise en commentaire margin et opacity du <hr> dans _reboot.scss ligne 65
 ==> changement couleur du <hr> dans _variables.scss ligne 508
+
+==> Mise en com .nav-tabs style.css l.4047
+==> Mise en comm border-top de .modal-footer l.5509

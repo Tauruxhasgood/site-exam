@@ -6,7 +6,7 @@
     <!-- Modal -->
     <div
       class="modal fade"
-      id="deleteComments"
+      id="deleteComments{{ this.id }}"
       tabindex="-1"
       aria-labelledby="deleteCommentsLabel"
       aria-hidden="true"
@@ -24,7 +24,7 @@
             ></button>
           </div>
           <div class="modal-body text-dark">
-            Êtes vous sur de vouloir supprimer cet Avis/Commentaire ?
+            Êtes vous sur de vouloir supprimer {{ this.id }} {{ this.title }} ?
           </div>
           <div class="modal-footer">
             <form action="/deleteOneComments/{{ this.id }}?_method=DELETE" method="post">
