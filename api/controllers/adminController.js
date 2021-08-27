@@ -13,7 +13,10 @@ exports.get = async (req, res) => {
         // listUser qui est récupéré dans la boucle #each du partial admin > tableUsers.hbs
         listUser: await query('SELECT * FROM user'),
         listArticle: await query(`SELECT * FROM articles`),
-        listComments: await query(`SELECT * FROM comments`),
+        listComments: await query(`SELECT comments.id, comments.title, comments.content, user.name
+                                   FROM comments
+                                   LEFT JOIN user
+                                   ON user.id = comments.author_id`),
         defaultActived: true
     })
 }

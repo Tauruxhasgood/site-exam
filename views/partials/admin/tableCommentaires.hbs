@@ -10,7 +10,7 @@ PARTIAL AVIS ET COMMENTAIRES
         <tr>
             <th scope="col">id</th>
             <th scope="col">Titre</th>
-            <th scope="col">Nom</th>
+            {{!-- <th scope="col">Nom</th> --}}
             {{!-- <th scope="col">Commentaires</th> --}}
             <th scope="col">Contenu</th>
             <th scope="col">Auteur</th>
@@ -25,10 +25,10 @@ PARTIAL AVIS ET COMMENTAIRES
         <tr>
             <th scope="row">{{inc @index}} : {{ this.id }}</th>
             <td>{{ this.title }}</td>
-            <td>{{ this.name }}</td>
+            {{!-- <td>{{ this.name }}</td> --}}
             {{!-- <td>{{ this.is_Avis }}</td> --}}
             <td>{{ this.content }}</td>
-            <td>{{ this.author_id }}</td>
+            <td>{{ this.name }}</td>
 
             <td>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteComments{{ this.id }}">

@@ -89,6 +89,9 @@ router.route('/deleteMultiComments')
 router.route('/user')
     .get(userController.get)
 
+router.route('/comment/:id')
+    .put(userController.modifyComment)
+
 //CONNEXION
 // --------------------
 router.route('/connexion')
