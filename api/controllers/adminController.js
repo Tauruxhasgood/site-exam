@@ -1,5 +1,5 @@
 /*
- * Controller
+ * Controller PANNEAU ADMIN
  *************/
 
 

@@ -1,19 +1,19 @@
 <tbody>
     {{#each userID}}
         <div class="tab-pane container-fluid active" id="monCompte" role="tabpanel" aria-labelledby="monCompte-tab">
-            <form class="" action='/account/user/{{ this.id }}?_method=PUT' enctype="multipart/form-data" method="POST">
+            <form class="" action='/userAccount/{{ this.id }}?_method=PUT' enctype="multipart/form-data" method="POST">
                 <div class="d-flex justify-content-center row">
-                    <div class="mb-3">
+                    {{!-- <div class="mb-3">
                         <h1 class="text-dark pt-4 text-center">Mon Compte</h1>
-                        {{!-- INPUT FULLNAME --}}
-                        <label for="full_name" class="form-label fw-bold">Nom Complet:</label>
+                        INPUT FULLNAME
+                        <label for="name" class="form-label fw-bold">Nom Complet:</label>
                         <input type="text" class="form-control" value="{{ this.name }}" name='name'
                             id="name" aria-describedby="none" required />
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
                         {{!-- INPUT NICKNAME --}}
                         <label for="nickname" class="form-label fw-bold">Pseudo:</label>
-                        <input type="text" class="form-control" value="{{ this.name }}" name='nickname'
+                        <input type="text" class="form-control" value="{{ this.name }}" name='name'
                             id="name" aria-describedby="none" required />
                     </div>
                     <div class="mb-3">
@@ -25,16 +25,16 @@
                     <div class="mb-3">
                         {{!-- INPUT CHANGE PASSWORD --}}
                         <label class="fw-bold pb-2" for="password">Nouveau mot de passe : </label>
-                        <input type="password" class="form-control pb-2" value="" name='NewPassword' id="newPassword"
+                        <input type="password" class="form-control pb-2" value="" name='newPassword' id="NewPassword"
                             aria-describedby="none" />
                         <label class="fw-bold" for="passConfirm">Confirmez mot de passe:</label>
                         <input type="password" class="form-control" value="" name='passwordConfirm' id="passwordConfirm"
                             aria-describedby="none" />
                     </div>
                     <div class="col-md-6">
-                        <label for="image" class="pb-2 fw-bold">Séléctionnez une image de profil :</label>
+                        <label for="image" class="pb-2 fw-bold">Selectionnez une image de profil :</label>
                         <input type="file" name="image" id="">
-                        <img src="{{ this.image }}" class="rounded-pill" height="90px" alt="">
+                        <img src="{{ this.avatar }}" class="rounded-pill" height="90px" alt="">
                     </div>
                     <div class="col-md-6 pt-3">
                         <button class="btn btn-primary" type="submit">Appliquer les modifications</button>

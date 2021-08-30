@@ -91,6 +91,10 @@ router.route('/user')
 
 router.route('/comment/:id')
     .put(userController.modifyComment)
+    .delete(userController.deleteCommentById)
+
+router.route('/userAccount/:id')
+    .put(userController.modifyAccount)
 
 //CONNEXION
 // --------------------

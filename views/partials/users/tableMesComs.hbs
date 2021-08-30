@@ -21,14 +21,13 @@
             <th scope="row">{{ this.id }}</th>
             <td>{{ this.title }}</td>
             <td>{{ article.title}}</td>
-            <td>{{ this.is_avis }}</td>
             <td>{{ this.content }}</td>
             <td>{{ this.name }}</td>
             <td>
                 <button type="button" 
                         class="btn btn-danger px-3" 
                         data-bs-toggle="modal"
-                        data-bs-target="#modalDeleteComment{{ this.id }}">
+                        data-bs-target="#modalDeleteComments{{ this.id }}">
                         <i class="far fa-trash-alt"></i>
                 </button>
             </td>
@@ -39,7 +38,7 @@
                         <i class="far fa-edit"></i>
                 </button>
             </td>
-            {{!-- {{> account/modal/modalDeleteComment comment=this }} --}}
+            {{> users/modals/modalDeleteComments comment=this }}
             {{> users/modals/modalModifyComment comments=this }}
         </tr>
         {{/each }}
