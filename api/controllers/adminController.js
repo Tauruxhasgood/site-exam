@@ -65,7 +65,6 @@ exports.editOneUser = async (req, res) => {
 
 // - Pour éditer un article
 exports.editArticle = async (req, res) => {
-    console.log('Controller Edit article :', req.body)
 
     if (!req.file) {
         const sql = `UPDATE articles

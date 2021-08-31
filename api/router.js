@@ -94,7 +94,10 @@ router.route('/comment/:id')
     .delete(userController.deleteCommentById)
 
 router.route('/userAccount/:id')
-    .put(userController.modifyAccount)
+    .put(upload.single('imageAvatar'), userController.modifyAccount)
+
+router.route('/userChangePassword/:id')
+    .put(userController.changePassword)
 
 //CONNEXION
 // --------------------

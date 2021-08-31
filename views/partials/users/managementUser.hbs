@@ -1,32 +1,31 @@
 <section class="pt-8 container-fluid bg-light">
-    {{#each userID }}
         <div class="pt-5">
-            <h5 class="text-center pt-5">Bonjour {{ this.name }} |  ton email est: {{
-            this.email }} <img class="rounded-pill" src="{{ this.image }}" height="100px" style="height: 100px;" alt="">
+            <h5 class="text-center pt-5">Bonjour {{ userID.name }} |  ton email est: {{
+            userID.email }} <img class="rounded-pill" src="{{ userID.image }}" height="100px" style="height: 100px;" alt="">
             </h5>
         </div>
-    {{/each }}
 
     {{! TABS ACCOUNT }}
     <ul class="nav nav-tabs d-flex justify-content-center  pb-3 ps-3 pt-5" id="myTab" role="tablist">
         {{!-- TAB GESTION DU COMPTE --}}
         <li class="nav-item ps-2 pe-2" role="presentation">
             <button class="nav-link  border-2 border-primary active bg-gradient" id="monCompte-tab" data-bs-toggle="tab"
-                data-bs-target="#monCompte" type="button" role="tab" aria-controls="monCompte" aria-selected="true">Mon
-                Compte</button>
+                data-bs-target="#monCompte" type="button" role="tab" aria-controls="monCompte" aria-selected="true">
+                Mon Compte
+            </button>
         </li>
         {{!-- TAB AVIS ET COMMENTAIRES --}}
         <li class="nav-item pe-2" role="presentation">
             <button class="nav-link  bggradient border-2 border-primary" id="profile-tab" data-bs-toggle="tab"
-                data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Mes
-                Avis & commentaires</button>
+                data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                Mes Avis & commentaires
+            </button>
         </li>
     </ul>
 
     {{! CONTENU TABS ACCOUNT }}
-    <div class="tab-content container pb-5 d-flex justify-content-end  ">
+    <div class="tab-content container d-flex justify-content-end  ">
         {{!-- MON COMPTE --}}
-
         <div class="tab-pane active" id="monCompte" role="tabpanel" aria-labelledby="monCompte-tab">
             {{> users/tableMonCompte }}
         </div>
@@ -38,11 +37,10 @@
     </div>
 </section>
 
-
-
 <script>
-    var firstTabEl = document.querySelector('#myTab li:last-child a') var firstTab
-        = new bootstrap.Tab(firstTabEl) firstTab.show()
+    var firstTabEl = document.querySelector('#myTab li:last-child button')
+    var firstTab = new bootstrap.Tab(firstTabEl)
+    firstTab.show()
 </script>
 
 

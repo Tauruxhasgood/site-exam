@@ -11,7 +11,7 @@ exports.pageBlogID = async (req, res) => {
     } else {
         // artIDD récupère les informations de l'article selectionner
         let artIDD = await query(`SELECT * FROM articles WHERE id = "${req.params.id}"`)
-        let dbComments = await query(`SELECT user.name, comments.content, comments.id
+        let dbComments = await query(`SELECT user.name, user.avatar, comments.content, comments.id
                                       FROM user
                                       LEFT JOIN comments
                                       ON user.id = comments.author_id

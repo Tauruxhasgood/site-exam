@@ -12,6 +12,8 @@ const storage = multer.diskStorage({
         const ext = file.originalname,
             date = Date.now(),
             completed = date + '_' + ext;
+            
+        console.log('Multer', file, completed)
 
         file.completed = completed
         cb(null, completed)

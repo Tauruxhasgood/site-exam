@@ -7,8 +7,11 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 exports.get = async (req, res) => {
+    const userID = await query(`SELECT id,name,email,avatar FROM user WHERE email = '${req.session.user.email}'`)
+
+    console.log('get myaccount', req.session, userID)
     res.render('user', {
-        userID: await query(`SELECT id,name,email,avatar FROM user WHERE email = '${req.session.user.email}'`),
+        userID: userID[0],
         userComments: await query(`SELECT comments.id, comments.title, comments.content, user.name
                                    FROM comments
                                    LEFT JOIN user
@@ -37,103 +40,113 @@ exports.deleteCommentById = async (req, res) => {
 }
 
 exports.modifyAccount = async (req, res) => {
-    console.log('données avant if :', req.body);
+    console.log('données avant if :', req.body, req.params);
+
     if (!req.file) {
+        let userID = await query(`SELECT id,name,email,avatar,nameAvatar FROM user WHERE id = '${req.params.id}'`)
+        console.log('not file', userID)
         const sql = `UPDATE user
                      SET 
                         name = '${req.body.name}',
                         email = '${req.body.email}'
                      WHERE id = '${req.params.id}';`
 
-        console.log('données modifiées:', req.body.name, req.body.email);
         await query(sql)
-        res.redirect('/user')
+        // res.redirect('/user')
+
+        req.session.user.email = req.body.email
+        req.session.user.name = req.body.name
+
+        res.render('user', {
+            userID: req.session.user,
+            userComments: await query(`SELECT comments.id, comments.title, comments.content, user.name
+                                       FROM comments
+                                       LEFT JOIN user
+                                       ON user.id = comments.author_id
+                                       WHERE author_id = ${req.session.user.id}`),
+        })
 
     } else {
-        const user =  await query(`SELECT * FROM user WHERE id = '${req.params.id}'`)
+        console.log('with file',)
+        let userIDOld = await query(`SELECT id,name,email,avatar,nameAvatar FROM user WHERE id = '${req.params.id}'`)
+
         const sql = `UPDATE user
                      SET
                         name = '${req.body.name}',
                         email = '${req.body.email}',
-                        avatar = '/assets/images/${req.file.completed}'
+                        avatar = '/assets/images/${req.file.completed}',
+                        nameAvatar = '${req.file.completed}'
                      WHERE id = '${req.params.id}';`
 
-                     console.log('données modifié si il y a une image:', sql);
+
         await query(sql)
 
-        const pathImg = path.resolve("public/images/" + user[0].avatar)
+        let userID = await query(`SELECT id,name,email,avatar,nameAvatar FROM user WHERE id = '${req.params.id}'`)
+        console.log('with file 2', userIDOld[0].nameAvatar, req.file)
 
-        fs.unlink(pathImg, (err) => {
-            if (err) console.log(err);
-            else res.redirect('/user')
+        if (userIDOld[0].avatar) {
+            const pathImg = path.resolve("public/images/" + userIDOld[0].nameAvatar)
+
+            fs.unlink(pathImg, (err) => {
+                if (err) console.log(err);
+
+            })
+        }
+
+        req.session.user.email = req.body.email
+
+        res.render('user', {
+            userID: userID[0],
+            userComments: await query(`SELECT comments.id, comments.title, comments.content, user.name
+                                       FROM comments
+                                       LEFT JOIN user
+                                       ON user.id = comments.author_id
+                                       WHERE author_id = ${req.session.user.id}`),
         })
     }
-
 }
 
-    
-//     if (req.body.newPassword) {
-//         console.log('données de newPassword :', req.body.newPassword)
-//         if (req.file) {
-//             console.log('données de file :', req.file);
-//             const dbUser = await query(`SELECT * FROM user WHERE id = ${req.params.id}`)
-//             const sql = `UPDATE user
-//                          SET
-//                             name = '${req.body.name}',
-//                             email = '${req.body.email}',
-//                             password = '${await bcrypt.hash(req.body.newPassword, saltRounds)}',
-//                             avatar = '/assets/images/${req.file.completed}'
-//                          WHERE id = '${req.params.id}'`
+exports.changePassword = async (req, res) => {
+    // console.log('données avant if:', req.body);
+    if (req.body.newPassword) {
+        console.log('données de req.body.newPassword:', req.body.newPassword);
+        const encryptedPassword = await bcrypt.hash(req.body.newPassword, saltRounds)
+        
+        console.log('Données de encryptedPassword:' , encryptedPassword);
 
-//             await query(sql)
-//             const pathImg = path.resolve("public/images/" + dbUser[0].name)
-//             fs.unlink(pathImg, (err) => {
-//                 if (err) console.log(err);
-//                 else res.redirect('/user')
-//             })
-//             res.redirect('/user')
-//             res.end()
+        let sql = `UPDATE user
+                     SET password = '${encryptedPassword}'
+                     WHERE id = '${req.params.id}';`
 
-//         } else {
-//             const sql = `UPDATE user
-//                          SET
-//                             name = '${req.body.name}',
-//                             email = '${req.body.email}',
-//                             password = '${await bcrypt.hash(req.body.newPassword, saltRounds)}'
-//                          WHERE id = ${req.params.id}`
+                
+        
+        await query(sql, encryptedPassword)
 
-//             await query(sql)
-//             res.redirect('/user')
-//             res.end()
-//         }
-//     } else {
-//         if (req.file) {
-//             console.log('req file :', req.file)
-//             const dbUser = await query(`SELECT * FROM user WHERE id = ${req.params.id}`)
-//             const sql = `UPDATE user
-//                           SET
-//                             name = '${req.body.name}',
-//                             email = '${req.body.email}',
-//                             avatar = '/assets/images/${req.file.completed}',
-//                           WHERE id = ${req.params.id}`
+        res.redirect('/user', {
+            // success: "Votre mot de passe a été modifié avec succès !"
+        })
 
-//             await query(sql)
-//             pathImg = path.resolve("public/images/" + dbUser[0].name)
-//             fs.unlink(pathImg, (err) => {
-//                 if (err) console.log(err)
-//             })
-//             res.redirect('/account')
+        // req.session.user.email = req.body.email
+        // req.session.user.name = req.body.name
 
-//         } else {
-//             const sql = `UPDATE user
-//                          SET
-//                             name = '${req.body.name}',
-//                             email = '${req.body.email}'
-//                          WHERE id = ${req.params.id}`
-
-//             await query(sql)
-//             res.redirect('/user')
-
-//         }
-//     }
-// }
+        // res.render('user', {
+        //     userID: req.session.user,
+        //     userComments: await query(`SELECT comments.id, comments.title, comments.content, user.name
+        //                                FROM comments
+        //                                LEFT JOIN user
+        //                                ON user.id = comments.author_id
+        //                                WHERE author_id = ${req.session.user.id}`),
+        //     success: "Votre mot de passe a été modifié avec succès !"
+        // })
+    } else {
+        
+        res.render('user', {
+            userID: req.session.user,
+            userComments: await query(`SELECT comments.id, comments.title, comments.content, user.name
+                                       FROM comments
+                                       LEFT JOIN user
+                                       ON user.id = comments.author_id
+                                       WHERE author_id = ${req.session.user.id}`),
+        })
+    }
+}
