@@ -71,7 +71,7 @@ exports.sendVerif = async (req, res) => {
         transporter.sendMail(mailOptions, (err, res, next) => {
             if (err) {
                 console.log(err)
-                res.redirect("/")
+                res.render('home')
             } else {
                 console.log("Message Envoyer")
                 next()
