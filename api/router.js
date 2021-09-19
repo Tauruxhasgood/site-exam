@@ -27,6 +27,7 @@ const homeController = require('./controllers/homeController'),
 const upload = require('./config/multer');
 // const faisant appel au middleware admin.js et déclarer dans le .get de ADMIN
 const isAdmin = require('./middleware/admin');
+const isUserNotBannedIsVerified = require('./middleware/isUserNotBannedIsVerified');
 
 /*
  * Router
@@ -42,7 +43,7 @@ router.route('/')
 
 // - Articles
 router.route('/blog')
-    .get(blogController.pageBlog)
+    .get(isUserNotBannedIsVerified, blogController.pageBlog)
 
 // - ArticleId
 router.route('/article/:id')
@@ -87,7 +88,7 @@ router.route('/deleteMultiComments')
 // USER
 // --------------------
 router.route('/user')
-    .get(userController.get)
+    .get(isUserNotBannedIsVerified, userController.get)
 
 router.route('/comment/:id')
     .put(userController.modifyComment)

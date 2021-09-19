@@ -46,6 +46,7 @@ exports.sendVerif = async (req, res) => {
     rand = Math.floor((Math.random() * 100) + 54);
     host = req.get('host');
     link = "http://" + req.get('host') + "/editPassword/" + rand;
+    link2 = "`https://www.embarquement.taurux.fr/contact`"
 
     const emailExist = await query(`SELECT user.email FROM user WHERE email = "${req.body.email}";`)
     console.log('emailExist: ', emailExist)
@@ -59,23 +60,25 @@ exports.sendVerif = async (req, res) => {
             subject: "Veuillez confirmez votre Email svp.",
             rand: rand,
             html: `
-                <h2>Encore un petit effort</h2><br>
-                <h5>Cliquer sur le lien suivant afin de finir la procédure de validation de nouveau mot de passe</h5><br>
-                <a href=" ` + link + ` ">Cliquez ici pour vérifier</a>`
+                <h2>Bonjour,</h2><br>
+                <h5>Nous avons reçu une demande de réinitialisation de mot de passe. Pour le changer, cliquer <a href=" ` + link + ` ">ici</a></h5><br>
+                <h5>Si vous n'avez pas demandé la réinitialisation de votre mot de passe, veuillez nous contacter via ce lien "` + link2 + `"</h5>
+                <br>
+                <h5>A très bientôt</h5><br>
+                <h5>Embarquement Immédiat</h5>`
         }
-        console.log(mailOptions)
-
+        
         transporter.sendMail(mailOptions, (err, res, next) => {
             if (err) {
                 console.log(err)
-                res.end("error")
+                res.redirect("/")
             } else {
                 console.log("Message Envoyer")
                 next()
             }
         })
         return res.render('home', {
-            success: "Un email de vérification à bien été envoyé à " + req.body.email
+            success: "Si votre adresse e-mail correspond à un compte Embarquement Immédiat, vous devriez recevoir un lien dans votre boite de réception d'ici quelques instants. Veuillez ouvrir ce lien pour réinitialiser votre mot de passe. " + req.body.email
         })
 
     }
