@@ -51,9 +51,12 @@ exports.create = async (req, res) => {
             subject: "Veuillez confirmez votre Email svp.",
             rand: rand,
             html: `
-                    <h2>Encore un petit effort</h2><br>
-                    <h5>Cliquer sur le lien suivant afin de finir la procédure de validation de votre mail !</h5><br>
-                    <a href=" ` + link + ` ">Cliquez ici pour vérifier</a>`
+                    <h2>Bonjour,</h2><br>
+                    <h5>Nous vous remercions de vous êtes inscrit sur embarquement.fr</h5><br>
+                    <h5>Pour activer votre compte utilisateur, veuillez cliquer sur le lien ci-dessous</h5><br>
+                    <a href=" ` + link + ` ">Cliquez ici pour activer votre compte</a><br>
+                    <h5>A très bientôt</h5>
+                    <h5>Embarquement Immédiat</h5>`
         }
         console.log('Données de mailOption :', mailOptions)
 
