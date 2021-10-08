@@ -12,13 +12,13 @@
         {{!-- BARRE DE RECHERCHE --}}
         <div class="row justify-content-md-center pt-5 pb-5">
             <form class="d-flex col-md-6">
-                <input id="mySearch" onkeyup="myFunction()" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input id="mySearch" onkeyup="filterBarFn()" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 {{!-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
             </form>
         </div>
 
         {{!-- ALL CARD --}}
-        <div class="row" id="myCard">
+        <div class="row" id="listCard">
             {{!-- dbArticle définit dans blogController (sélection de tous les articles) --}}
             {{#each dbArticle }}
 
@@ -42,23 +42,33 @@
 </section>
 
 <script>
-    function myFunction() {
+    function filterBarFn() {
+        // on déclare nos variables
         var input, filter, div1, div2, h2, i, txtValue;
+        // notre variable input récupère l'id "mySearch" (balise input)
         input = document.getElementById('mySearch');
+        // filter récupère la valeur de ce que l'utilisateur saisie et le converti en majuscule
         filter = input.value.toUpperCase();
-        div1 = document.getElementById("myCard");
+        // div1 récupère listCard qui comprends toutes les cards
+        div1 = document.getElementById("listCard");
+        // div2 (enfants de div1) récupère toutes les balises"div" 
         div2 = div1.getElementsByTagName('div');
 
+        // on dis que i = 0 qui comprends l'élément 1 du tableau, si i est inférieur à div2 il s'incrémente
         for (i = 0; i < div2.length; i++) {
+            // h2 récupère le premier des enfants avec le tag name "h2"  
             h2 = div2[i].getElementsByTagName("h2")[0];
-
             console.log('INFO DE H2 :', h2)
+            // txtValue récupère le contenu OU l'intérieur du h2
             txtValue = h2.textContent || h2.innerText;
 
             console.log('INFO DE TXTVALUE :', txtValue)
+            // si txtValue mis en majuscule est égale au caractère saisie par l'utilisateur
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                // on le laisse à l'écran
                 div2[i].style.display = "";
             } else {
+                // on le cache
                 div2[i].style.display = "none";
             }
         }
